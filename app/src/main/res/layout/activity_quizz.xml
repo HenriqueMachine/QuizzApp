@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewQuizz"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:text="Quizz"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:layout_marginBottom="20dp"
+        >
+    </TextView>
+
+    <LinearLayout
+        android:background="@color/colorBackground2"
+        android:layout_height="150dp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radioButtonA"
+                android:text="1 pergunta"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:textColor="#fff"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+            </RadioButton>
+
+            <RadioButton
+                android:text="1 pergunta"
+                android:id="@+id/radioButtonB"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:textColor="#fff"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+            </RadioButton>
+
+            <RadioButton
+                android:text="1 pergunta"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:textColor="#fff"
+                android:id="@+id/radioButtonC"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+            </RadioButton>
+        </RadioGroup>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:text="Pergunta:"
+        android:textSize="30dp"
+        android:textStyle="italic"
+        android:textColor="@color/colorAccent"
+        android:layout_marginBottom="20dp"
+        >
+    </TextView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/colorBackground2">
+        <TextView
+            android:id="@+id/textViewQuestion"
+            android:layout_height="110dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:text="Text"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:layout_marginBottom="20dp"
+            >
+        </TextView>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnAnswer"
+        android:background="#fff"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="25dp"
+        android:text="READY !?"
+        android:textColor="@color/colorAccent"/>
+
+</LinearLayout>
