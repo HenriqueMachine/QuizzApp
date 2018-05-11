@@ -12,10 +12,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val buttonStart = findViewById(R.id.btnStart) as Button
+        val buttonStartFrag = findViewById(R.id.btnStartFragment) as Button
 
         buttonStart.setOnClickListener {
             val intent = Intent (this, QuizzActivity :: class.java)
             startActivity(intent)
         }
+
+        buttonStartFrag.setOnClickListener {
+
+
+
+        }
+
     }
 }
