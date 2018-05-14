@@ -19,15 +19,5 @@
         android:textSize="25dp"
         android:textColor="@color/colorBackground2"/>
 
-    <Button
-        android:id="@+id/btnStartFragment"
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="START QUIZZ\n +"
-        android:textSize="25dp"
-        android:textColor="@color/colorBackground2"/>
-
 
 </LinearLayout>
