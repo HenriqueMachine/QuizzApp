@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         buttonStartFrag.setOnClickListener {
 
 
-
         }
 
     }

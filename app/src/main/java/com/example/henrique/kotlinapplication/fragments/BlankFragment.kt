@@ -30,7 +30,7 @@ private const val ARG_PARAM2 = "param2"
 class BlankFragment : Fragment() {
 
     private val randomNumber = Random()
-    private val DIFICULTY = 200
+    private val DIFICULTY = 400
     private var value1: Int? = null
     private var value2: Int? = null
     private var answer: Int? = null
@@ -53,7 +53,6 @@ class BlankFragment : Fragment() {
 
         text_op.text = op
     }
-
 
     private fun initViews() {
 
@@ -139,6 +138,7 @@ class BlankFragment : Fragment() {
 
             if (timerNow!! > 3000) {
                 generateQuestion()
+                Toast.makeText(activity,"Errou", Toast.LENGTH_SHORT).show()
                 startTimer((timerNow!! - 3000))
             }else{
                 timerToEnd.text = "0"
@@ -153,9 +153,9 @@ class BlankFragment : Fragment() {
 
     private fun generateQuestion() {
 
-        value1 = radomNumberGenerator(DIFICULTY)
+        value1 = randomNumberGenerator(DIFICULTY)
         number1.text = value1.toString()
-        value2 = radomNumberGenerator(DIFICULTY)
+        value2 = randomNumberGenerator(DIFICULTY)
         number2.text = value2.toString()
 
         when(op){
@@ -165,17 +165,17 @@ class BlankFragment : Fragment() {
             "/" -> answer = value1!! / value2!!
         }
 
-        val position = radomNumberGenerator(2)
+        val position = randomNumberGenerator(2)
 
-        (radioGroup.getChildAt(0) as RadioButton).text = radomNumberGenerator(DIFICULTY).toString()
-        (radioGroup.getChildAt(1) as RadioButton).text = radomNumberGenerator(DIFICULTY).toString()
-        (radioGroup.getChildAt(2) as RadioButton).text = radomNumberGenerator(DIFICULTY).toString()
+        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
+        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
+        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
 
         (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()
 
     }
 
-    fun radomNumberGenerator(dificulty:Int): Int{
+    fun randomNumberGenerator(dificulty:Int): Int{
         return randomNumber.nextInt(dificulty)
     }
 
@@ -186,6 +186,5 @@ class BlankFragment : Fragment() {
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
     }
-
 
 }
