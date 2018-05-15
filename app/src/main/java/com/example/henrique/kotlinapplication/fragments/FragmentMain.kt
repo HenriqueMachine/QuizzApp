@@ -14,20 +14,14 @@ import android.widget.Toast
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.models.Resposta
-import kotlinx.android.synthetic.main.fragment_plus.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
-class BlankFragment : Fragment() {
+class FragmentPlus : Fragment() {
 
     private val randomNumber = Random()
     private val DIFICULTY = 400
@@ -44,14 +38,15 @@ class BlankFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_plus, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
 
-        text_op.text = op
+        //text_op.text = op
+        op = text_op.text.toString()
     }
 
     private fun initViews() {
@@ -79,7 +74,7 @@ class BlankFragment : Fragment() {
             if (!init) {
                 btnAnswer!!.text = "CONFIRMAR"
                 generateQuestion()
-                startTimer(30000)
+                startTimer(20000)
                 init = true
                 radioButtonA.isEnabled = true
                 radioButtonB.isEnabled = true
@@ -136,13 +131,13 @@ class BlankFragment : Fragment() {
 
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
 
-            if (timerNow!! > 3000) {
+            if (timerNow!! > 3000 || timerNow!! > 1000) {
                 generateQuestion()
                 Toast.makeText(activity,"Errou", Toast.LENGTH_SHORT).show()
                 startTimer((timerNow!! - 3000))
             }else{
                 timerToEnd.text = "0"
-                Toast.makeText(activity,"Perdeu", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity,"Seu tempo acabou ='(", Toast.LENGTH_SHORT).show()
                 timer?.cancel()
             }
 

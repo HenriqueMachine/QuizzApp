@@ -2,10 +2,7 @@ package com.example.henrique.kotlinapplication
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
-import com.example.henrique.kotlinapplication.fragments.BlankFragment
-import kotlinx.android.synthetic.main.activity_quizz.*
-import java.util.*
+import com.example.henrique.kotlinapplication.fragments.FragmentPlus
 
 class QuizzActivity : AppCompatActivity() {
 
@@ -17,7 +14,7 @@ class QuizzActivity : AppCompatActivity() {
 
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.container, BlankFragment())
+                .replace(R.id.container, FragmentPlus())
                 .commit()
 
     }

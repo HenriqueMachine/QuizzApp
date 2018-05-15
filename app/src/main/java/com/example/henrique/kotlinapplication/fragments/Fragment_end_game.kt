@@ -14,16 +14,16 @@ import com.example.henrique.kotlinapplication.R
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
-class SucessFragment : Fragment() {
+
+class Fragment_end_game : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sucess, container, false)
+        return inflater.inflate(R.layout.fragment_fragment_end_game, container, false)
+
+
+
     }
 
 
