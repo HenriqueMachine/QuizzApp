@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical|center_horizontal">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:background="#fff"
+            android:padding="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seu tempo acabou :("
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
+        <TextView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Você acertou:"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryDark"/>
+        <TextView
+            android:id="@+id/textview_acertos"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="#fff"/>
+        <TextView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="questões."
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <Button
+            android:textColor="#fff"
+            android:textStyle="italic"
+            android:background="@color/colorBackground2"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="16dp"
+            android:text="JOGAR NOVAMENTE" />
+
+        <Button
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:background="@color/colorBackground2"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:text="RESULTADO" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

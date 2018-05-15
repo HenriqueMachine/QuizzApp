@@ -1,6 +1,7 @@
 package com.example.henrique.kotlinapplication.fragments
 
 
+import android.app.Dialog
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v4.app.Fragment
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 
 import com.example.henrique.kotlinapplication.R
@@ -100,9 +102,7 @@ class FragmentPlus : Fragment() {
 
             override fun onFinish() {
 
-                for (p in listAnswers){
-                    Log.i("LOG",p.toString())
-                }
+                finishGame()
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -114,6 +114,27 @@ class FragmentPlus : Fragment() {
 
 
         timer?.start()
+    }
+
+    private fun finishGame() {
+
+        for (p in listAnswers){
+            Log.i("LOG",p.toString())
+        }
+        Toast.makeText(activity,"Seu tempo acabou ='(", Toast.LENGTH_SHORT).show()
+        showDialogResult()
+    }
+
+    private fun showDialogResult() {
+
+        var dialog = Dialog(activity)
+
+        dialog.setContentView(R.layout.custom_dialog)
+
+        //dialog.findViewById<TextView>(R.id.textview_acertos).text = ""
+
+        dialog.show()
+
     }
 
     private fun verifyAnswer() {
@@ -137,7 +158,7 @@ class FragmentPlus : Fragment() {
                 startTimer((timerNow!! - 3000))
             }else{
                 timerToEnd.text = "0"
-                Toast.makeText(activity,"Seu tempo acabou ='(", Toast.LENGTH_SHORT).show()
+                finishGame()
                 timer?.cancel()
             }
 
