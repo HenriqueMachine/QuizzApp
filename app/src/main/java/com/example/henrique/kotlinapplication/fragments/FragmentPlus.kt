@@ -21,9 +21,9 @@ import kotlin.collections.ArrayList
 class FragmentPlus : Fragment() {
 
     private val randomNumber = Random()
-    private val DIFICULTY = 10
-    private val DIFICULTY_DIV = 100
-    private val DIFICULTY_MULTI = 5
+    private val DIFICULTY = 40
+    private val DIFICULTY_DIV = 10
+    private val DIFICULTY_MULTI = 1000
     private var value1: Int? = null
     private var value2: Int? = null
     private var answer: Int? = null
