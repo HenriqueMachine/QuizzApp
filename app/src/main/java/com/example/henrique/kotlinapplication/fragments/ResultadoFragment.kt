@@ -18,7 +18,27 @@ class ResultadoFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_resultado, container, false)
+        val view = inflater.inflate(R.layout.fragment_resultado, container, false)
+        
+        //MOCK List
+        var arrayList = mutableListOf<Historic>()
+        arrayList.add(Historic("R$300,00", "Tranferência recebida", "02 maio 2018", "depósito"))
+        arrayList.add(Historic("R$300,00", "Tranferência recebida", "02 maio 2018", "depósito"))
+        arrayList.add(Historic("R$300,00", "Tranferência recebida", "02 maio 2018", "depósito"))
+        arrayList.add(Historic("R$300,00", "Tranferência recebida", "02 maio 2018", "depósito"))
+        arrayList.add(Historic("R$300,00", "Tranferência recebida", "02 maio 2018", "depósito"))
+
+        mLayoutManager = LinearLayoutManager(activity)
+        adapteHistoric = MyHistoricAdapter(arrayList)
+        rcHistoric = view.findViewById<RecyclerView>(R.id.rvHistoricBottomSheet).apply {
+            setHasFixedSize(true)
+            // use a linear layout manager
+            layoutManager = mLayoutManager
+            // specify an viewAdapter (see also next example)
+            adapter = adapteHistoric
+        }
+        
+        return view
     }
 
 
