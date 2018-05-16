@@ -20,8 +20,6 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class FragmentPlus : Fragment() {
 
@@ -45,11 +43,45 @@ class FragmentPlus : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        op = arguments!!.getString("OP","")
+
+        when (op){
+            "+" -> text_op.text = "+"
+            "-" -> text_op.text = "-"
+            "*" -> text_op.text = "*"
+            "/" -> text_op.text = "/"
+        }
+
         initViews()
 
-        //text_op.text = op
-        op = text_op.text.toString()
     }
+
+    override fun onResume() {
+        super.onResume()
+        init = false
+        generateQuestion()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer?.cancel()
+        timer = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        radioButtonA.isEnabled = false
+        radioButtonB.isEnabled = false
+        radioButtonC.isEnabled = false
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+    }
+
+
 
     private fun initViews() {
 
@@ -64,6 +96,7 @@ class FragmentPlus : Fragment() {
                     myAnswer = radioGroup.findViewById<RadioButton>(checkedId).text.toString().toInt()
 
                 }catch (e: Exception){
+                    //Erro no divide
                     myAnswer = 0
                 }
 
@@ -106,12 +139,13 @@ class FragmentPlus : Fragment() {
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                timerNow = millisUntilFinished
-                timerToEnd.text = (millisUntilFinished/1000).toInt().toString()
+                    timerNow = millisUntilFinished
+                    timerToEnd.text = (millisUntilFinished/1000).toInt().toString()
+
+
             }
 
         }
-
 
         timer?.start()
     }
@@ -152,7 +186,7 @@ class FragmentPlus : Fragment() {
 
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
 
-            if (timerNow!! > 3000 || timerNow!! > 1000) {
+            if (timerNow!! > 3000) {
                 generateQuestion()
                 Toast.makeText(activity,"Errou", Toast.LENGTH_SHORT).show()
                 startTimer((timerNow!! - 3000))
@@ -191,16 +225,9 @@ class FragmentPlus : Fragment() {
 
     }
 
-    fun randomNumberGenerator(dificulty:Int): Int{
+    private fun randomNumberGenerator(dificulty:Int): Int{
         return randomNumber.nextInt(dificulty)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        init = false
-        radioButtonA.isEnabled = false
-        radioButtonB.isEnabled = false
-        radioButtonC.isEnabled = false
     }
 
 }

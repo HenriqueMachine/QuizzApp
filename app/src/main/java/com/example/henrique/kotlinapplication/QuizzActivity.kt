@@ -12,9 +12,17 @@ class QuizzActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quizz)
 
+        var op = intent.extras.getString("OP")
+
+        var fragment = FragmentPlus()
+
+        var args = Bundle()
+        args.putString("OP",op)
+        fragment.arguments = args
+
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.container, FragmentPlus())
+                .replace(R.id.container, fragment)
                 .commit()
 
     }

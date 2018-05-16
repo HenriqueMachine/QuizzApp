@@ -17,22 +17,24 @@ class MainActivity : AppCompatActivity() {
 
         buttonStart.setOnClickListener {
             val intent = Intent (this, QuizzActivity :: class.java)
+            intent.putExtra("OP","+")
             startActivity(intent)
-            text_op.text = "+"
         }
 
         btnMinus.setOnClickListener {
             val intent = Intent(this, QuizzActivity ::class.java)
+            intent.putExtra("OP","-")
             startActivity(intent)
-            text_op.text = "-"
         }
-        btnX.setOnClickListener { val intent = Intent(this, QuizzActivity ::class.java)
+        btnX.setOnClickListener {
+            val intent = Intent(this, QuizzActivity ::class.java)
+            intent.putExtra("OP","*")
             startActivity(intent)
-            text_op.text = "*"
         }
-        btnDivide.setOnClickListener { val intent = Intent(this, QuizzActivity ::class.java)
+        btnDivide.setOnClickListener {
+            val intent = Intent(this, QuizzActivity ::class.java)
+            intent.putExtra("OP","/")
             startActivity(intent)
-            text_op.text = "/"
         }
 
     }
