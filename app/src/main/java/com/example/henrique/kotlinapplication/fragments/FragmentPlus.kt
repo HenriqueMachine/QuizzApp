@@ -9,10 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.models.Resposta
@@ -24,16 +21,20 @@ import kotlin.collections.ArrayList
 class FragmentPlus : Fragment() {
 
     private val randomNumber = Random()
-    private val DIFICULTY = 400
+    private val DIFICULTY = 10
+    private val DIFICULTY_DIV = 100
+    private val DIFICULTY_MULTI = 5
     private var value1: Int? = null
     private var value2: Int? = null
     private var answer: Int? = null
     private var myAnswer: Int? = null
+    private var myAnswer2: Int? = null
     private var init = false
     private var op = "+"
     private var timer: CountDownTimer? = null
     private var timerNow: Long? = null
     private var listAnswers = ArrayList <Resposta> ()
+    private var questionsCorrect: Int? = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -53,14 +54,29 @@ class FragmentPlus : Fragment() {
             "/" -> text_op.text = "/"
         }
 
+        init = false
+        radioButtonA.isEnabled = false
+        radioButtonB.isEnabled = false
+        radioButtonC.isEnabled = false
+        radioButtonD.isEnabled = false
+
+
         initViews()
 
     }
 
     override fun onResume() {
         super.onResume()
-        init = false
-        generateQuestion()
+        if (init){
+            radioGroup.clearCheck()
+            startTimer(timerNow!!)
+            radioButtonA.isEnabled = true
+            radioButtonB.isEnabled = true
+            radioButtonC.isEnabled = true
+            radioButtonD.isEnabled = true
+
+
+        }
     }
 
     override fun onDestroy() {
@@ -69,25 +85,19 @@ class FragmentPlus : Fragment() {
         timer = null
     }
 
-    override fun onStart() {
-        super.onStart()
-        radioButtonA.isEnabled = false
-        radioButtonB.isEnabled = false
-        radioButtonC.isEnabled = false
-    }
-
     override fun onPause() {
         super.onPause()
 
+        timer?.cancel()
     }
-
-
 
     private fun initViews() {
 
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
+        radioButtonD.isEnabled = false
+
         radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
             override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
 
@@ -97,7 +107,7 @@ class FragmentPlus : Fragment() {
 
                 }catch (e: Exception){
                     //Erro no divide
-                    myAnswer = 0
+                    //myAnswer = 0
                 }
 
             }
@@ -109,16 +119,17 @@ class FragmentPlus : Fragment() {
             if (!init) {
                 btnAnswer!!.text = "CONFIRMAR"
                 generateQuestion()
-                startTimer(20000)
+                startTimer(21000)
                 init = true
                 radioButtonA.isEnabled = true
                 radioButtonB.isEnabled = true
                 radioButtonC.isEnabled = true
+                radioButtonD.isEnabled = true
+
 
             }else{
                 verifyAnswer()
             }
-
 
         }
 
@@ -142,7 +153,6 @@ class FragmentPlus : Fragment() {
                     timerNow = millisUntilFinished
                     timerToEnd.text = (millisUntilFinished/1000).toInt().toString()
 
-
             }
 
         }
@@ -155,6 +165,7 @@ class FragmentPlus : Fragment() {
         for (p in listAnswers){
             Log.i("LOG",p.toString())
         }
+        timerToEnd.text = "0"
         Toast.makeText(activity,"Seu tempo acabou ='(", Toast.LENGTH_SHORT).show()
         showDialogResult()
     }
@@ -164,18 +175,32 @@ class FragmentPlus : Fragment() {
         var dialog = Dialog(activity)
 
         dialog.setContentView(R.layout.custom_dialog)
+        dialog.findViewById<Button>(R.id.btnPlayAgain).setOnClickListener {
+            dialog.hide()
+            questionsCorrect = 0
+            initViews()
+            generateQuestion()
+            radioButtonA.isEnabled = true
+            radioButtonB.isEnabled = true
+            radioButtonC.isEnabled = true
+            radioButtonD.isEnabled = true
 
-        //dialog.findViewById<TextView>(R.id.textview_acertos).text = ""
+            startTimer(21000)
 
+        }
+        dialog.findViewById<Button>(R.id.btnResult).setOnClickListener {  }
+
+        dialog.findViewById<TextView>(R.id.textview_acertos).text = questionsCorrect.toString()
         dialog.show()
 
     }
 
     private fun verifyAnswer() {
 
-        if (myAnswer == answer){
-
+        if (myAnswer == answer || myAnswer2 == answer){
+            questionsCorrect = questionsCorrect?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
+
 
             Toast.makeText(activity,"Acertou", Toast.LENGTH_SHORT).show()
 
@@ -215,18 +240,41 @@ class FragmentPlus : Fragment() {
             "/" -> answer = value1!! / value2!!
         }
 
-        val position = randomNumberGenerator(2)
+        when(op){
 
-        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
-        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
-        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
+            "/" -> {genDificulty(DIFICULTY_DIV) }
+            "*" -> {genDificulty(DIFICULTY_MULTI)}
+            else -> {val position = randomGeneratorBtn(3)
 
-        (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()
+                (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
+                (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
+                (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
+                (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
 
+                (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()}
+
+        }
+
+    }
+
+    private fun randomGeneratorBtn(buttonRandom: Int): Int {
+        return randomNumber.nextInt(buttonRandom)
     }
 
     private fun randomNumberGenerator(dificulty:Int): Int{
         return randomNumber.nextInt(dificulty)
+    }
+
+    private fun genDificulty(receive: Int){
+
+        val position = randomGeneratorBtn(3)
+
+        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator(receive).toString()
+        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator(receive).toString()
+        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator(receive).toString()
+        (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator(receive).toString()
+
+        (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()
 
     }
 
