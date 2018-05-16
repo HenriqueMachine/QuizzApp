@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
 class FragmentPlus : Fragment() {
 
     private val randomNumber = Random()
-    private val DIFICULTY = 40
+    private val DIFICULTY = 100
     private val DIFICULTY_DIV = 10
     private val DIFICULTY_MULTI = 1000
     private var value1: Int? = null
@@ -205,16 +205,16 @@ class FragmentPlus : Fragment() {
             Toast.makeText(activity,"Acertou", Toast.LENGTH_SHORT).show()
 
             generateQuestion()
-            startTimer((timerNow!! + 3000))
+            startTimer((timerNow!! + 2000))
 
         }else{
 
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
 
-            if (timerNow!! > 3000) {
+            if (timerNow!! > 2000) {
                 generateQuestion()
                 Toast.makeText(activity,"Errou", Toast.LENGTH_SHORT).show()
-                startTimer((timerNow!! - 3000))
+                startTimer((timerNow!! - 2000))
             }else{
                 timerToEnd.text = "0"
                 finishGame()
@@ -262,7 +262,7 @@ class FragmentPlus : Fragment() {
     }
 
     private fun randomNumberGenerator(dificulty:Int): Int{
-        return randomNumber.nextInt(dificulty)
+        return randomNumber.nextInt(dificulty) + 5
     }
 
     private fun genDificulty(receive: Int){
