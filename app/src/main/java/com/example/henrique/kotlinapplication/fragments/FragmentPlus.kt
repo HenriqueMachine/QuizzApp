@@ -67,6 +67,7 @@ class FragmentPlus : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        listAnswers.clear()
         if (init){
             radioGroup.clearCheck()
             startTimer(timerNow!!)
@@ -166,7 +167,7 @@ class FragmentPlus : Fragment() {
             Log.i("LOG",p.toString())
         }
         timerToEnd.text = "0"
-        Toast.makeText(activity,"Seu tempo acabou ='(", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity,"Seu tempo acabou ='(", Toast.LENGTH_SHORT).show()
         showDialogResult()
     }
 
@@ -176,7 +177,7 @@ class FragmentPlus : Fragment() {
 
         dialog.setContentView(R.layout.custom_dialog)
         dialog.findViewById<Button>(R.id.btnPlayAgain).setOnClickListener {
-            dialog.hide()
+
             questionsCorrect = 0
             initViews()
             generateQuestion()
@@ -187,8 +188,30 @@ class FragmentPlus : Fragment() {
 
             startTimer(21000)
 
+            dialog.dismiss()
+
         }
-        dialog.findViewById<Button>(R.id.btnResult).setOnClickListener {  }
+        dialog.findViewById<Button>(R.id.btnResult).setOnClickListener {
+
+            var resultadoFragment = ResultadoFragment()
+
+            var args = Bundle()
+            args.putParcelableArrayList("RESPOSTAS",listAnswers)
+
+            resultadoFragment.arguments = args
+
+            activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.replace(R.id.container, resultadoFragment)
+                    ?.addToBackStack(null)
+                    ?.commit()
+
+
+            questionsCorrect = 0
+            dialog.dismiss()
+
+
+        }
 
         dialog.findViewById<TextView>(R.id.textview_acertos).text = questionsCorrect.toString()
         dialog.show()
@@ -202,7 +225,7 @@ class FragmentPlus : Fragment() {
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
 
 
-            Toast.makeText(activity,"Acertou", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(activity,"Acertou", Toast.LENGTH_SHORT).show()
 
             generateQuestion()
             startTimer((timerNow!! + 2000))
@@ -213,7 +236,7 @@ class FragmentPlus : Fragment() {
 
             if (timerNow!! > 2000) {
                 generateQuestion()
-                Toast.makeText(activity,"Errou", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity,"Errou", Toast.LENGTH_SHORT).show()
                 startTimer((timerNow!! - 2000))
             }else{
                 timerToEnd.text = "0"

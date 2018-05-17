@@ -1,40 +1,47 @@
 package com.example.henrique.kotlinapplication.adapters
 
-class RecyclerAdapterResposta(val list: MutableList<Historic>) : RecyclerView.Adapter<MyHistoricAdapter.ViewHolder>() {
+import android.content.Context
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.henrique.kotlinapplication.R
+import com.example.henrique.kotlinapplication.models.Resposta
+import kotlinx.android.synthetic.main.item_set_results.view.*
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.line_item_historic, parent, false) as View
+class RecyclerAdapterResposta(var mlista: ArrayList<Resposta>,val context: Context) : RecyclerView.Adapter<RecyclerAdapterResposta.MyViewHolder>(){
 
-        return ViewHolder(view)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        var view = LayoutInflater.from(parent?.context).inflate(R.layout.item_set_results, parent, false)
+
+        return MyViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        val resposta = mlista[position]
+
+        holder.itemView.tvValor1.text = resposta.firstValue.toString()
+        holder.itemView.tvValor2.text = resposta.secondValue.toString()
+        holder.itemView.tvOperacao.text = resposta.isOperation
+        holder.itemView.tvResultado.text = resposta.resultAccount.toString()
+
+    }
+
+
+    fun replaceData(respostas:ArrayList<Resposta>){
+
+        mlista = respostas
+        notifyDataSetChanged()
+
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return mlista.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var historic : Historic
-        if (list != null){
-            historic = list.get(position)
-
-            holder.tvValue.text = historic.valueMoney
-            holder.tvDescription.text = historic.description
-            holder.tvDate.text = historic.date
-            holder.tvType.text = historic.type
-        }
-
-    }
-
-
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view){
-
-        var tvValue : TextView = view.findViewById(R.id.tvValue)
-        var tvDescription : TextView = view.findViewById(R.id.tvDescription)
-        var tvDate : TextView = view.findViewById(R.id.tvDate)
-        var tvType : TextView = view.findViewById(R.id.tvType)
-
-    }
-
+    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
 }
 

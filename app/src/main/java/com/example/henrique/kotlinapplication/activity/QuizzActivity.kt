@@ -1,7 +1,8 @@
-package com.example.henrique.kotlinapplication
+package com.example.henrique.kotlinapplication.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.fragments.FragmentPlus
 
 class QuizzActivity : AppCompatActivity() {
