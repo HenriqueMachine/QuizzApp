@@ -23,7 +23,7 @@
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="M4T3M4\n Quizz"
+            android:text="LOGO"
             android:textColor="@color/colorAccent"
             android:textSize="30dp"
             android:textStyle="bold"/>

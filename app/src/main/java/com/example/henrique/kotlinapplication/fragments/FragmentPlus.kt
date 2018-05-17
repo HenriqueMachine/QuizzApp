@@ -60,7 +60,6 @@ class FragmentPlus : Fragment() {
         radioButtonC.isEnabled = false
         radioButtonD.isEnabled = false
 
-
         initViews()
 
     }
@@ -75,7 +74,6 @@ class FragmentPlus : Fragment() {
             radioButtonB.isEnabled = true
             radioButtonC.isEnabled = true
             radioButtonD.isEnabled = true
-
 
         }
     }
@@ -115,6 +113,7 @@ class FragmentPlus : Fragment() {
 
         })
 
+        //Botão confirmar
         btnAnswer!!.setOnClickListener {
 
             if (!init) {
@@ -206,10 +205,8 @@ class FragmentPlus : Fragment() {
                     ?.addToBackStack(null)
                     ?.commit()
 
-
             questionsCorrect = 0
             dialog.dismiss()
-
 
         }
 
@@ -251,10 +248,7 @@ class FragmentPlus : Fragment() {
 
     private fun generateQuestion() {
 
-        value1 = randomNumberGenerator(DIFICULTY)
-        number1.text = value1.toString()
-        value2 = randomNumberGenerator(DIFICULTY)
-        number2.text = value2.toString()
+        receiveQuestionLevel()
 
         when(op){
             "+" -> answer = value1!! + value2!!
@@ -267,7 +261,7 @@ class FragmentPlus : Fragment() {
 
             "/" -> {genDificulty(DIFICULTY_DIV) }
             "*" -> {genDificulty(DIFICULTY_MULTI)}
-            else -> {val position = randomGeneratorBtn(3)
+            else -> { val position = randomGeneratorBtn(3)
 
                 (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
                 (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator(DIFICULTY).toString()
@@ -280,12 +274,22 @@ class FragmentPlus : Fragment() {
 
     }
 
+    private fun receiveQuestionLevel() {
+
+
+        //Arrumar dificuldade multi && div
+        value1 = randomNumberGenerator(DIFICULTY)
+        number1.text = value1.toString()
+        value2 = randomNumberGenerator(DIFICULTY)
+        number2.text = value2.toString()
+    }
+
     private fun randomGeneratorBtn(buttonRandom: Int): Int {
         return randomNumber.nextInt(buttonRandom)
     }
 
-    private fun randomNumberGenerator(dificulty:Int): Int{
-        return randomNumber.nextInt(dificulty) + 5
+    private fun randomNumberGenerator(numParaGerar:Int): Int{
+        return randomNumber.nextInt(numParaGerar)
     }
 
     private fun genDificulty(receive: Int){

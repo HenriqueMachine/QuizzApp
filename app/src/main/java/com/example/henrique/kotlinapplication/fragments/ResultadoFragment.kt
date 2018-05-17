@@ -34,7 +34,6 @@ class ResultadoFragment : Fragment() {
 
         initViews()
 
-
     }
 
     private fun initViews() {

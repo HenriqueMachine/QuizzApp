@@ -6,54 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity"
     android:orientation="vertical"
-    android:background="@color/colorBackground2"
-    android:padding="16dp">
+    android:background="@color/colorBackground2">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="M4T3M4 Quizz"
+        android:text="LOGO"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="40dp"
+        android:layout_margin="16dp"
         android:layout_gravity="center"
         android:gravity="center"/>
 
     <Button
         android:id="@+id/btnStart"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/shape_button_menu"
         android:text="MODO ADIÇÃO ( + )"
         android:textSize="25dp"
-        android:textColor="@color/colorBackground2"/>
+        android:textColor="@color/colorPrimaryDark"/>
     <Button
         android:id="@+id/btnMinus"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/shape_button_menu"
         android:text="MODO SUBTRAÇÃO ( - )"
         android:textSize="25dp"
-        android:textColor="@color/colorBackground2"/>
+        android:textColor="@color/colorPrimaryDark"/>
     <Button
         android:id="@+id/btnX"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/shape_button_menu"
         android:text="MODO MULTIPLICAÇÃO ( x )"
         android:textSize="25dp"
-        android:textColor="@color/colorBackground2"/>
+        android:textColor="@color/colorPrimaryDark"/>
+
     <Button
         android:id="@+id/btnDivide"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/shape_button_menu"
         android:text="MODO DIVISÃO ( / )"
         android:textSize="25dp"
-        android:textColor="@color/colorBackground2"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
 
 </LinearLayout>
