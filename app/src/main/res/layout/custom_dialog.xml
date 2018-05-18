@@ -55,24 +55,31 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:gravity="center"
-        android:padding="5dp">
+   >
 
         <Button
             android:id="@+id/btnPlayAgain"
             android:textColor="#fff"
             android:textStyle="italic"
-            android:background="@color/colorBackground2"
+            android:background="@drawable/shape_button_menu"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_width="110dp"
             android:layout_height="60dp"
-            android:layout_marginRight="16dp"
             android:text="JOGAR NOVAMENTE" />
 
         <Button
             android:id="@+id/btnResult"
             android:textStyle="bold"
             android:textColor="#fff"
-            android:background="@color/colorBackground2"
-            android:layout_width="110dp"
+            android:background="@drawable/shape_button_menu"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="RESULTADO" />
 

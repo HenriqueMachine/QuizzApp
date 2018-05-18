@@ -21,24 +21,22 @@ import kotlin.collections.ArrayList
 
 class FragmentPlus : Fragment() {
 
-    private val randomNumber = Random()
-    private val DIFICULTY = 100
+    //private val randomNumber = Random()
+    private val DIFICULTY = 500
     private var value1: Int? = null
     private var value2: Int? = null
     private var answer: Int? = null
     private var myAnswer: Int? = null
-    private var myAnswer2: Int? = null
     private var init = false
     private var op = "+"
     private var timer: CountDownTimer? = null
     private var timerNow: Long? = null
     private var listAnswers = ArrayList <Resposta> ()
     private var questionsCorrect: Int? = 0
-    private var recebeResposta:Int? = 0
+    private  var dialog:Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
@@ -58,7 +56,8 @@ class FragmentPlus : Fragment() {
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
-        radioButtonD.isEnabled = false
+
+        dialog = Dialog(activity)
 
         initViews()
 
@@ -73,7 +72,6 @@ class FragmentPlus : Fragment() {
             radioButtonA.isEnabled = true
             radioButtonB.isEnabled = true
             radioButtonC.isEnabled = true
-            radioButtonD.isEnabled = true
 
         }
     }
@@ -95,7 +93,6 @@ class FragmentPlus : Fragment() {
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
-        radioButtonD.isEnabled = false
 
         radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
             override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
@@ -119,13 +116,15 @@ class FragmentPlus : Fragment() {
             if (!init) {
                 btnAnswer!!.text = "CONFIRMAR"
                 generateQuestion()
-                startTimer(21000)
                 init = true
                 radioButtonA.isEnabled = true
                 radioButtonB.isEnabled = true
                 radioButtonC.isEnabled = true
-                radioButtonD.isEnabled = true
-
+                when (op){
+                    "/" -> {startTimer(61000)}
+                    "*" -> {startTimer(61000)}
+                    else ->{startTimer(41000)}
+                }
 
             }else{
                 verifyAnswer()
@@ -166,17 +165,14 @@ class FragmentPlus : Fragment() {
             Log.i("LOG",p.toString())
         }
         timerToEnd.text = "0"
-        //Toast.makeText(activity,"Seu tempo acabou ='(", Toast.LENGTH_SHORT).show()
         showDialogResult()
     }
 
     private fun showDialogResult() {
 
-        var dialog = Dialog(activity)
-
-        dialog.setContentView(R.layout.custom_dialog)
-        dialog.setCancelable(false)
-        dialog.findViewById<Button>(R.id.btnPlayAgain).setOnClickListener {
+        dialog?.setContentView(R.layout.custom_dialog)
+        dialog?.setCancelable(false)
+        dialog?.findViewById<Button>(R.id.btnPlayAgain)?.setOnClickListener {
 
             questionsCorrect = 0
             initViews()
@@ -184,14 +180,16 @@ class FragmentPlus : Fragment() {
             radioButtonA.isEnabled = true
             radioButtonB.isEnabled = true
             radioButtonC.isEnabled = true
-            radioButtonD.isEnabled = true
-
-            startTimer(32)
-
-            dialog.dismiss()
-
+            when (op){
+                "/" -> {startTimer(61000)}
+                "*" -> {startTimer(61000)}
+                else ->{startTimer(41000)}
+            }
+            dialog?.dismiss()
         }
-        dialog.findViewById<Button>(R.id.btnResult).setOnClickListener {
+        dialog?.findViewById<Button>(R.id.btnResult)?.setOnClickListener {
+
+
 
             var resultadoFragment = ResultadoFragment()
 
@@ -207,40 +205,54 @@ class FragmentPlus : Fragment() {
                     ?.commit()
 
             questionsCorrect = 0
-            dialog.dismiss()
+
+            dialog?.dismiss()
+
 
         }
 
-        dialog.findViewById<TextView>(R.id.textview_acertos).text = questionsCorrect.toString()
-        dialog.show()
+        dialog?.findViewById<TextView>(R.id.textview_acertos)?.text = questionsCorrect.toString()
+
+        if (!dialog!!.isShowing)
+            dialog?.show()
 
     }
 
     private fun verifyAnswer() {
 
-        if (myAnswer == answer || myAnswer2 == answer){
+        if (myAnswer == answer){
             questionsCorrect = questionsCorrect?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
-
-
-            //Toast.makeText(activity,"Acertou", Toast.LENGTH_SHORT).show()
-
             generateQuestion()
-            startTimer((timerNow!! + 2500))
-
-        }else{
-
-            listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
-
-            if (timerNow!! > 2500) {
-                generateQuestion()
-                //Toast.makeText(activity,"Errou", Toast.LENGTH_SHORT).show()
-                startTimer((timerNow!! - 2500))
-            }else{
-                timerToEnd.text = "0"
-                finishGame()
-                timer?.cancel()
+            when (op){
+                "/" -> {startTimer(timerNow!! + 11000)}
+                "*" -> {startTimer(timerNow!! + 11000)}
+                else ->{startTimer(timerNow!! + 5000)}
             }
+        }
+         if (myAnswer != answer ){
+            listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
+             when (op){
+                 "/" -> {startTimer(timerNow!! - 5100)
+                 if (timerNow!! > 5100){
+                     generateQuestion()
+                 }else {timerToEnd.text = "0"
+                     finishGame()
+                     timer?.cancel()} }
+
+                 "*" -> {startTimer(timerNow!! - 5100)
+                     if (timerNow!! > 5100){
+                         generateQuestion()
+                     }else {timerToEnd.text = "0"
+                         finishGame()
+                         timer?.cancel()}}
+                 else ->{startTimer(timerNow!! - 2000)
+                     if (timerNow!! > 2000){
+                         generateQuestion()
+                     }else {timerToEnd.text = "0"
+                         finishGame()
+                         timer?.cancel()}}
+             }
 
         }
 
@@ -249,66 +261,44 @@ class FragmentPlus : Fragment() {
 
     private fun generateQuestion() {
 
-        //Arrumar dificuldade multi && div
-        value1 = randomNumberGenerator((DIFICULTY/2),DIFICULTY)
-        number1.text = value1.toString()
-        value2 = randomNumberGenerator((DIFICULTY/2),DIFICULTY)
-        number2.text = value2.toString()
+        when (op){
+            "*" -> {  value1 = randomNumberGenerator((4),94)
+                number1.text = value1.toString()
+                value2 = randomNumberGenerator((3),22)
+                number2.text = value2.toString()}
 
+            "/" -> {  value1 = randomNumberGenerator((9),DIFICULTY)
+                number1.text = value1.toString()
+                value2 = randomNumberGenerator((1),14)
+                number2.text = value2.toString()}
+
+            else -> {
+                value1 = randomNumberGenerator((7),DIFICULTY)
+                number1.text = value1.toString()
+                value2 = randomNumberGenerator((8),DIFICULTY)
+                number2.text = value2.toString()}
+        }
         when(op){
-            "+" -> {answer = value1!! + value2!!
-            recebeResposta = answer }
+            "+" -> answer = value1!! + value2!!
             "-" -> answer = value1!! - value2!!
             "*" -> answer = value1!! * value2!!
             "/" -> answer = value1!! / value2!!
         }
 
-//        when(op){
-//
-//            "/" -> {genDificulty(DIFICULTY_DIV) }
-//            "*" -> {genDificulty(DIFICULTY_MULTI)}
-//            else -> { val position = randomGeneratorBtn(3)
-//
-//                (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
-//                (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
-//                (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
-//                (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
-//
-//                (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()}
-//
-//        }
+        val position = randomNumberGenerator(0,2)
 
-        val position = randomNumberGenerator(0,3)
-
-        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
-        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
-        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
-        (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator((answer!! - 10),(answer!! + 10)).toString()
+        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator((answer!! - 22),(answer!! + 22)).toString()
+        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator((answer!! - 22),(answer!! + 22)).toString()
+        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator((answer!! - 22),(answer!! + 22)).toString()
 
         (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()}
 
-    }
+}
 
-//    private fun randomGeneratorBtn(buttonRandom: Int): Int {
-//        return randomNumber.nextInt(buttonRandom)
-//    }
+private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
+    var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
+    return inteiro
+}
 
-    private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
-        var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
-        return inteiro
-    }
-
-//    private fun genDificulty(receive: Int){
-//
-//        val position = randomGeneratorBtn(3)
-//
-//        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator(receive).toString()
-//        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator(receive).toString()
-//        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator(receive).toString()
-//        (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator(receive).toString()
-//
-//        (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()
-//
-//    }
 
 

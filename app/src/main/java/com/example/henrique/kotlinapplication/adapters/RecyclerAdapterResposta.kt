@@ -2,6 +2,7 @@ package com.example.henrique.kotlinapplication.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -28,13 +29,15 @@ class RecyclerAdapterResposta(var mlista: ArrayList<Resposta>,val context: Conte
             holder.itemView.tvValor2.text = resposta.secondValue.toString()
             holder.itemView.tvOperacao.text = resposta.isOperation
             holder.itemView.tvResultado.text = resposta.resultAccount.toString()
-            holder.itemView.tvResultado.setBackgroundColor(R.color.colorNotError!!)
+            holder.itemView.tvResultado
+                    .setBackgroundColor(ContextCompat.getColor(context,R.color.colorNotError))
         } else {
             holder.itemView.tvValor1.text = resposta.firstValue.toString()
             holder.itemView.tvValor2.text = resposta.secondValue.toString()
             holder.itemView.tvOperacao.text = resposta.isOperation
             holder.itemView.tvResultado.text = resposta.resultAccount.toString()
-            holder.itemView.tvResultado.setBackgroundColor(R.color.colorError!!)}
+            holder.itemView.tvResultado.setBackgroundColor(ContextCompat.getColor(context, R.color.colorError))
+        }
     }
 
 
