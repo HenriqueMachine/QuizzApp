@@ -24,10 +24,10 @@ import java.util.concurrent.ThreadLocalRandom
 
 class FragmentOthersOperations : Fragment() {
 
-    private val DIFICULTY = 500
-    var auxEq = text_op_x.toString()
-    var auxVal1 = number1others.toString()
-    var auxVal2 = number2others.toString()
+    //private val DIFICULTY = 500
+    //var auxEq = text_op_x.toString()
+    //var auxVal1 = number1others.toString()
+    //var auxVal2 = number2others.toString()
     private var value1: Int? = null
     private var value2: Int? = null
     private var valueAuxOp: Int? = null
@@ -215,7 +215,6 @@ class FragmentOthersOperations : Fragment() {
 
         radioGroupOther.clearCheck()
     }
-
 
     private fun initViews() {
 
