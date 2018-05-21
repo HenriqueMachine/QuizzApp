@@ -13,13 +13,12 @@ import android.widget.*
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.models.Resposta
-import kotlinx.android.synthetic.main.fragment_main.*
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_basic_operation.*
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.collections.ArrayList
 
 
-class FragmentPlus : Fragment() {
+class FragmentBasicOperation : Fragment() {
 
     //private val randomNumber = Random()
     private val DIFICULTY = 500
@@ -37,7 +36,7 @@ class FragmentPlus : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_basic_operation, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

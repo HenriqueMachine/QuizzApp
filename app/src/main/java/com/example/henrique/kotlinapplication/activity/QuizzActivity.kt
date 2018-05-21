@@ -3,7 +3,7 @@ package com.example.henrique.kotlinapplication.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.henrique.kotlinapplication.R
-import com.example.henrique.kotlinapplication.fragments.FragmentPlus
+import com.example.henrique.kotlinapplication.fragments.FragmentBasicOperation
 
 class QuizzActivity : AppCompatActivity() {
 
@@ -15,7 +15,7 @@ class QuizzActivity : AppCompatActivity() {
 
         var op = intent.extras.getString("OP")
 
-        var fragment = FragmentPlus()
+        var fragment = FragmentBasicOperation()
 
         var args = Bundle()
         args.putString("OP",op)
