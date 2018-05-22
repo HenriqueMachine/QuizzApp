@@ -18,6 +18,5 @@ class QuizzNewModuleActivity : AppCompatActivity() {
                 .replace(R.id.container2, fragment)
                 .commit()
 
-
     }
 }

@@ -18,7 +18,6 @@ import android.widget.TextView
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.activity.MainActivity
 import com.example.henrique.kotlinapplication.models.Resposta
-import kotlinx.android.synthetic.main.fragment_basic_operation.*
 import kotlinx.android.synthetic.main.fragment_fragment_others_operations.*
 import java.util.concurrent.ThreadLocalRandom
 
@@ -56,9 +55,9 @@ class FragmentOthersOperations : Fragment() {
         }
 
         init = false
-        radioButtonA.isEnabled = false
-        radioButtonB.isEnabled = false
-        radioButtonC.isEnabled = false
+        radioButtonAother.isEnabled = false
+        radioButtonBother.isEnabled = false
+        radioButtonCother.isEnabled = false
 
         dialog = Dialog(activity)
 
@@ -72,9 +71,9 @@ class FragmentOthersOperations : Fragment() {
         if (init){
             radioGroupOther.clearCheck()
             startTimer(timerNow!!)
-            radioButtonA.isEnabled = true
-            radioButtonB.isEnabled = true
-            radioButtonC.isEnabled = true
+            radioButtonAother.isEnabled = true
+            radioButtonBother.isEnabled = true
+            radioButtonCother.isEnabled = true
 
         }
     }
@@ -134,9 +133,9 @@ class FragmentOthersOperations : Fragment() {
             questionsCorrect = 0
             initViews()
             generateQuestion()
-            radioButtonA.isEnabled = true
-            radioButtonB.isEnabled = true
-            radioButtonC.isEnabled = true
+            radioButtonAother.isEnabled = true
+            radioButtonBother.isEnabled = true
+            radioButtonCother.isEnabled = true
             when (op){
                 "/" -> {startTimer(61000)}
                 "*" -> {startTimer(61000)}
@@ -157,7 +156,7 @@ class FragmentOthersOperations : Fragment() {
 
             activity?.supportFragmentManager
                     ?.beginTransaction()
-                    ?.replace(R.id.container, resultadoFragment)
+                    ?.replace(R.id.container2, resultadoFragment)
                     ?.addToBackStack(null)
                     ?.commit()
 
@@ -193,20 +192,20 @@ class FragmentOthersOperations : Fragment() {
                 "+" -> {startTimer(timerNow!! - 5100)
                     if (timerNow!! > 5100){
                         generateQuestion()
-                    }else {timerToEnd.text = "0"
+                    }else {timerToEndOther.text = "0"
                         finishGame()
                         timer?.cancel()} }
 
                 "-" -> {startTimer(timerNow!! - 5100)
                     if (timerNow!! > 5100){
                         generateQuestion()
-                    }else {timerToEnd.text = "0"
+                    }else {timerToEndOther.text = "0"
                         finishGame()
                         timer?.cancel()}}
                 else ->{startTimer(timerNow!! - 2000)
                     if (timerNow!! > 2000){
                         generateQuestion()
-                    }else {timerToEnd.text = "0"
+                    }else {timerToEndOther.text = "0"
                         finishGame()
                         timer?.cancel()}}
             }
@@ -218,16 +217,16 @@ class FragmentOthersOperations : Fragment() {
 
     private fun initViews() {
 
-        radioButtonA.isEnabled = false
-        radioButtonB.isEnabled = false
-        radioButtonC.isEnabled = false
+        radioButtonAother.isEnabled = false
+        radioButtonBother.isEnabled = false
+        radioButtonCother.isEnabled = false
 
         radioGroupOther.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
             override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
 
                 try {
 
-                    myAnswer = radioGroup.findViewById<RadioButton>(checkedId).text.toString().toInt()
+                    myAnswer = radioGroupOther.findViewById<RadioButton>(checkedId).text.toString().toInt()
 
                 }catch (e: Exception){
                     //Erro no divide
@@ -245,9 +244,9 @@ class FragmentOthersOperations : Fragment() {
                 btnAnswerOther!!.text = "CONFIRMAR"
                 generateQuestion()
                 init = true
-                radioButtonA.isEnabled = true
-                radioButtonB.isEnabled = true
-                radioButtonC.isEnabled = true
+                radioButtonAother.isEnabled = true
+                radioButtonBother.isEnabled = true
+                radioButtonCother.isEnabled = true
                 when (op){
                     "/" -> {startTimer(61000)}
                     "*" -> {startTimer(61000)}
