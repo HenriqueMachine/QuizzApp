@@ -33,7 +33,7 @@ class FragmentOthersOperations : Fragment() {
     private var answer: Int? = null
     private var myAnswer: Int? = null
     private var init = false
-    private var op = "+"
+    private var op = ""
     private var timer: CountDownTimer? = null
     private var timerNow: Long? = null
     private var listAnswers = ArrayList <Resposta> ()
@@ -61,7 +61,7 @@ class FragmentOthersOperations : Fragment() {
 
         dialog = Dialog(activity)
 
-        //initViews()
+        initViews()
 
     }
 
@@ -131,6 +131,7 @@ class FragmentOthersOperations : Fragment() {
         dialog?.findViewById<Button>(R.id.btnPlayAgain)?.setOnClickListener {
 
             questionsCorrect = 0
+            radioGroupOther.clearCheck()
             initViews()
             generateQuestion()
             radioButtonAother.isEnabled = true
@@ -139,7 +140,7 @@ class FragmentOthersOperations : Fragment() {
             when (op){
                 "/" -> {startTimer(61000)}
                 "*" -> {startTimer(61000)}
-                else ->{startTimer(41000)}
+                else ->{startTimer(61000)}
             }
             dialog?.dismiss()
         }
@@ -181,9 +182,9 @@ class FragmentOthersOperations : Fragment() {
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
             generateQuestion()
             when (op){
-                "/" -> {startTimer(timerNow!! + 11000)}
-                "*" -> {startTimer(timerNow!! + 11000)}
-                else ->{startTimer(timerNow!! + 5000)}
+                "+" -> {startTimer(timerNow!! + 11000)}
+                "-" -> {startTimer(timerNow!! + 11000)}
+
             }
         }
         if (myAnswer != answer ){
@@ -198,12 +199,6 @@ class FragmentOthersOperations : Fragment() {
 
                 "-" -> {startTimer(timerNow!! - 5100)
                     if (timerNow!! > 5100){
-                        generateQuestion()
-                    }else {timerToEndOther.text = "0"
-                        finishGame()
-                        timer?.cancel()}}
-                else ->{startTimer(timerNow!! - 2000)
-                    if (timerNow!! > 2000){
                         generateQuestion()
                     }else {timerToEndOther.text = "0"
                         finishGame()
@@ -263,30 +258,45 @@ class FragmentOthersOperations : Fragment() {
 
    private fun generateQuestion() {
 
-        value1 = randomNumberGenerator(1, 66)
+        value1 = randomNumberGenerator(6, 52)
         number1others.text = value1.toString()
 
-        value2 = randomNumberGenerator(1, 66)
-        number1others.text = value1.toString()
+        value2 = randomNumberGenerator(7, 51)
+        number2others.text = value2.toString()
 
-        valueAuxOp = randomNumberGenerator(0, 1)
+        valueAuxOp = randomNumberGenerator(0, 100)
 
-        when (valueAuxOp) {
-
-            0 -> {
-                text_op_x.text = "+"
-                if (text_op_x.text == "+") {
-                    answer = value1!! - value2!!
-                }
-            }
-            1 -> {
-                text_op_x.text = "-"
-                if (text_op_x.text == "+") {
-                    answer = value1!! + value2!!
-                }
-            }
-
-        }
+       if(valueAuxOp!!.mod(2) == 0){
+           op = "+"
+           text_op_x.text = "+"
+           if (text_op_x.text == "+") {
+               answer = value2!! - value1!!
+           }
+       }else{
+           op = "-"
+           text_op_x.text = "-"
+           if (text_op_x.text == "-") {
+               answer =  value2!! + value1!!
+           }
+       }
+//        when (valueAuxOp) {
+//
+//            0 -> {
+//                op = "+"
+//                text_op_x.text = "+"
+//                if (text_op_x.text == "+") {
+//                    answer = value1!! - value2!!
+//                }
+//            }
+//            1 -> {
+//                op = "-"
+//                text_op_x.text = "-"
+//                if (text_op_x.text == "+") {
+//                    answer = value1!! + value2!!
+//                }
+//            }
+//
+//        }
 
         val position = randomNumberGenerator(0, 2)
 
