@@ -234,9 +234,10 @@ class FragmentBasicOperation : Fragment() {
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
             generateQuestion()
             when (op){
-                "/" -> {startTimer(timerNow!! + 11000)}
-                "*" -> {startTimer(timerNow!! + 11000)}
-                else ->{startTimer(timerNow!! + 5000)}
+                "/" -> startTimer(timerNow!! + 11000)
+                "*" -> startTimer(timerNow!! + 11000)
+                "+" -> startTimer(timerNow!! + 5000)
+                "-" -> startTimer(timerNow!! + 5000)
             }
         }
          if (myAnswer != answer ){
@@ -244,7 +245,7 @@ class FragmentBasicOperation : Fragment() {
              when (op){
                  "/" -> {startTimer(timerNow!! - 5100)
                  if (timerNow!! > 5100){
-                     generateQuestion()
+                     finishGame()
                  }else {timerToEnd.text = "0"
                      finishGame()
                      timer?.cancel()} }
@@ -255,8 +256,23 @@ class FragmentBasicOperation : Fragment() {
                      }else {timerToEnd.text = "0"
                          finishGame()
                          timer?.cancel()}}
-                 else ->{startTimer(timerNow!! - 2000)
-                     if (timerNow!! > 2000){
+
+                 "/" -> {startTimer(timerNow!! - 5100)
+                     if (timerNow!! > 5100){
+                         generateQuestion()
+                     }else {timerToEnd.text = "0"
+                         finishGame()
+                         timer?.cancel()}}
+
+                 "+" -> {startTimer(timerNow!! - 5100)
+                     if (timerNow!! > 5100){
+                         generateQuestion()
+                     }else {timerToEnd.text = "0"
+                         finishGame()
+                         timer?.cancel()}}
+
+                 "-" -> {startTimer(timerNow!! - 5100)
+                     if (timerNow!! > 5100){
                          generateQuestion()
                      }else {timerToEnd.text = "0"
                          finishGame()
