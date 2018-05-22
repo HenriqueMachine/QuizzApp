@@ -198,8 +198,6 @@ class FragmentBasicOperation : Fragment() {
         }
         dialog?.findViewById<Button>(R.id.btnResult)?.setOnClickListener {
 
-
-
             var resultadoFragment = ResultadoFragment()
 
             var args = Bundle()
@@ -216,7 +214,6 @@ class FragmentBasicOperation : Fragment() {
             questionsCorrect = 0
 
             dialog?.dismiss()
-
 
         }
 
@@ -245,7 +242,7 @@ class FragmentBasicOperation : Fragment() {
              when (op){
                  "/" -> {startTimer(timerNow!! - 5100)
                  if (timerNow!! > 5100){
-                     finishGame()
+                     generateQuestion()
                  }else {timerToEnd.text = "0"
                      finishGame()
                      timer?.cancel()} }
