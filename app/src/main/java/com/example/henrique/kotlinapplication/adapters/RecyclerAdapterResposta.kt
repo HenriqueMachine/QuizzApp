@@ -15,6 +15,7 @@ class RecyclerAdapterResposta(var mlista: ArrayList<Resposta>,val context: Conte
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+
         var view = LayoutInflater.from(parent?.context).inflate(R.layout.item_set_results, parent, false)
 
         return MyViewHolder(view)
@@ -46,6 +47,10 @@ class RecyclerAdapterResposta(var mlista: ArrayList<Resposta>,val context: Conte
         mlista = respostas
         notifyDataSetChanged()
 
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return mlista[position].viewType
     }
 
     override fun getItemCount(): Int {

@@ -3,13 +3,13 @@ package com.example.henrique.kotlinapplication.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class Resposta(
+class RespostaEqSimple(
         var firstValue: Int,
         var secondValue: Int,
         var resultAccount: Int,
         var isOperation: String,
         var isCorrect: Boolean,
-        var viewType: Int = 1) : Parcelable {
+        var viewType: Int = 2) : Parcelable {
     override fun toString(): String {
         return "Resposta(firstValue=$firstValue, secondValue=$secondValue, resultAccount=$resultAccount, isOperation='$isOperation', isCorrect=$isCorrect)"
     }
@@ -36,9 +36,9 @@ class Resposta(
 
     companion object {
         @JvmField
-        val CREATOR: Parcelable.Creator<Resposta> = object : Parcelable.Creator<Resposta> {
-            override fun createFromParcel(source: Parcel): Resposta = Resposta(source)
-            override fun newArray(size: Int): Array<Resposta?> = arrayOfNulls(size)
+        val CREATOR: Parcelable.Creator<RespostaEqSimple> = object : Parcelable.Creator<RespostaEqSimple> {
+            override fun createFromParcel(source: Parcel): RespostaEqSimple = RespostaEqSimple(source)
+            override fun newArray(size: Int): Array<RespostaEqSimple?> = arrayOfNulls(size)
         }
     }
 }
