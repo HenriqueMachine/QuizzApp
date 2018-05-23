@@ -180,7 +180,6 @@ class FragmentOthersOperations : Fragment() {
         if (myAnswer == answer){
             questionsCorrect = questionsCorrect?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
-            generateQuestion()
             when (op){
                 "+" -> {startTimer(timerNow!! + 11000)}
                 "-" -> {startTimer(timerNow!! + 11000)}
@@ -206,6 +205,8 @@ class FragmentOthersOperations : Fragment() {
             }
 
         }
+
+        generateQuestion()
 
         radioGroupOther.clearCheck()
     }

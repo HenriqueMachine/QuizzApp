@@ -103,21 +103,16 @@ class FragmentBasicOperation : Fragment() {
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
 
-        radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
-            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            try {
 
-                try {
+                myAnswer = radioGroup.findViewById<RadioButton>(checkedId).text.toString().toInt()
 
-                    myAnswer = radioGroup.findViewById<RadioButton>(checkedId).text.toString().toInt()
-
-                }catch (e: Exception){
-                    //Erro no divide
-                    //myAnswer = 0
-                }
-
+            }catch (e: Exception){
+                //Erro no divide
+                //myAnswer = 0
             }
-
-        })
+        }
 
         //Botão confirmar
         btnAnswer!!.setOnClickListener {
@@ -226,18 +221,18 @@ class FragmentBasicOperation : Fragment() {
 
     private fun verifyAnswer() {
 
-        if (myAnswer == answer){
+        if (myAnswer == answer ){
             questionsCorrect = questionsCorrect?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
-            generateQuestion()
             when (op){
                 "/" -> startTimer(timerNow!! + 11000)
                 "*" -> startTimer(timerNow!! + 11000)
                 "+" -> startTimer(timerNow!! + 5000)
                 "-" -> startTimer(timerNow!! + 5000)
             }
+
         }
-         if (myAnswer != answer ){
+        if (myAnswer != answer ){
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
              when (op){
                  "/" -> {startTimer(timerNow!! - 5100)
@@ -268,7 +263,7 @@ class FragmentBasicOperation : Fragment() {
                          finishGame()
                          timer?.cancel()}}
 
-                 "-" -> {startTimer(timerNow!! - 5100)
+                 "-" -> {startTimer(timerNow!! + 5100)
                      if (timerNow!! > 5100){
                          generateQuestion()
                      }else {timerToEnd.text = "0"
@@ -277,6 +272,8 @@ class FragmentBasicOperation : Fragment() {
              }
 
         }
+
+        generateQuestion()
 
         radioGroup.clearCheck()
     }
