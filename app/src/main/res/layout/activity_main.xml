@@ -62,17 +62,4 @@
         android:textSize="25dp"
         android:textColor="@color/colorPrimaryDark"/>
 
-    <Button
-        android:elevation="8dp"
-        android:layout_gravity="end"
-        android:id="@+id/btnNext"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/ic_next_page"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimaryDark"/>
-
 </LinearLayout>

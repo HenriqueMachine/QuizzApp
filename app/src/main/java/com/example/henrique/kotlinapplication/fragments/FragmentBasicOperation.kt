@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.airbnb.lottie.LottieAnimationView
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.activity.MainActivity
@@ -35,7 +36,7 @@ class FragmentBasicOperation : Fragment() {
     private var timerNow: Long? = null
     private var listAnswers = ArrayList <Resposta> ()
     private var questionsCorrect: Int? = 0
-    private  var dialog:Dialog? = null
+    private var dialog:Dialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -98,6 +99,10 @@ class FragmentBasicOperation : Fragment() {
     }
 
     private fun initViews() {
+
+        lottieFile.setAnimation(R.raw.graduating_engineer)
+        lottieFile.playAnimation()
+        lottieFile.loop(true)
 
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
@@ -224,6 +229,10 @@ class FragmentBasicOperation : Fragment() {
         if (myAnswer == answer ){
             questionsCorrect = questionsCorrect?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
+            lottieFile.setAnimation(R.raw.ok)
+            lottieFile.playAnimation()
+            lottieFile.cancelAnimation()
+
             when (op){
                 "/" -> startTimer(timerNow!! + 11000)
                 "*" -> startTimer(timerNow!! + 11000)
@@ -234,6 +243,9 @@ class FragmentBasicOperation : Fragment() {
         }
         if (myAnswer != answer ){
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
+            lottieFile.setAnimation(R.raw.failed)
+            lottieFile.playAnimation()
+            lottieFile.cancelAnimation()
              when (op){
                  "/" -> {startTimer(timerNow!! - 5100)
                  if (timerNow!! > 5100){
@@ -318,6 +330,3 @@ private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
     var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
     return inteiro
 }
-
-
-

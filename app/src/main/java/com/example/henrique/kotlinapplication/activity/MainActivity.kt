@@ -37,10 +37,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnNext.setOnClickListener {
-            val intent = Intent(this, Main2Activity::class.java)
-            startActivity(intent)
-        }
-
     }
 }
