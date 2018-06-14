@@ -12,7 +12,7 @@ class Main2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        btnTeste.setOnClickListener {
+        btnEq1Grau.setOnClickListener {
             val intent = Intent(this, QuizzNewModuleActivity::class.java)
             startActivity(intent)
         }

@@ -18,15 +18,11 @@ import android.widget.TextView
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.activity.MainActivity
 import com.example.henrique.kotlinapplication.models.Resposta
-import kotlinx.android.synthetic.main.fragment_fragment_others_operations.*
+import kotlinx.android.synthetic.main.fragment_equacao_1_grau.*
 import java.util.concurrent.ThreadLocalRandom
 
-class FragmentOthersOperations : Fragment() {
+class FragmentEquacao1grau : Fragment() {
 
-    //private val DIFICULTY = 500
-    //var auxEq = text_op_x.toString()
-    //var auxVal1 = number1others.toString()
-    //var auxVal2 = number2others.toString()
     private var value1: Int? = null
     private var value2: Int? = null
     private var valueAuxOp: Int? = null
@@ -43,7 +39,7 @@ class FragmentOthersOperations : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_others_operations, container, false)
+        return inflater.inflate(R.layout.fragment_equacao_1_grau, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -146,8 +142,6 @@ class FragmentOthersOperations : Fragment() {
         }
         dialog?.findViewById<Button>(R.id.btnResult)?.setOnClickListener {
 
-
-
             var resultadoFragment = ResultadoFragment()
 
             var args = Bundle()
@@ -246,7 +240,7 @@ class FragmentOthersOperations : Fragment() {
                 when (op){
                     "/" -> {startTimer(61000)}
                     "*" -> {startTimer(61000)}
-                    else ->{startTimer(41000)}
+                    else ->{startTimer(61000)}
                 }
 
             }else{
@@ -280,24 +274,6 @@ class FragmentOthersOperations : Fragment() {
                answer =  value2!! + value1!!
            }
        }
-//        when (valueAuxOp) {
-//
-//            0 -> {
-//                op = "+"
-//                text_op_x.text = "+"
-//                if (text_op_x.text == "+") {
-//                    answer = value1!! - value2!!
-//                }
-//            }
-//            1 -> {
-//                op = "-"
-//                text_op_x.text = "-"
-//                if (text_op_x.text == "+") {
-//                    answer = value1!! + value2!!
-//                }
-//            }
-//
-//        }
 
         val position = randomNumberGenerator(0, 2)
 
@@ -309,7 +285,6 @@ class FragmentOthersOperations : Fragment() {
     }
 
     }
-
 
 private fun randomNumberGenerator(min:Int, max:Int): Int{
     var inteiro:Int = ThreadLocalRandom.current().nextInt(min, max)
