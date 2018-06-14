@@ -98,6 +98,7 @@ class FragmentBasicOperation : Fragment() {
         timer?.cancel()
     }
 
+    //Inicia as views na tela
     private fun initViews() {
 
         lottieFile.setAnimation(R.raw.graduating_engineer)
@@ -143,6 +144,7 @@ class FragmentBasicOperation : Fragment() {
 
     }
 
+    //Inicia o temporizador
     private fun startTimer(timer_milli:Long) {
 
         if (timer!=null){
@@ -168,6 +170,7 @@ class FragmentBasicOperation : Fragment() {
         timer?.start()
     }
 
+    //Termina o jogo
     private fun finishGame() {
 
         for (p in listAnswers){
@@ -177,6 +180,7 @@ class FragmentBasicOperation : Fragment() {
         showDialogResult()
     }
 
+    //Mostra a dialog de resultado
     private fun showDialogResult() {
 
         dialog?.setContentView(R.layout.custom_dialog)
@@ -224,6 +228,7 @@ class FragmentBasicOperation : Fragment() {
 
     }
 
+    //Verifica se a resposta está certa ou errada
     private fun verifyAnswer() {
 
         if (myAnswer == answer ){
@@ -290,6 +295,7 @@ class FragmentBasicOperation : Fragment() {
         radioGroup.clearCheck()
     }
 
+    //Gera questão
     private fun generateQuestion() {
 
         when (op){
@@ -326,7 +332,8 @@ class FragmentBasicOperation : Fragment() {
 
 }
 
-private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
+    //Gera os números aleatórios
+    private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
     var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
     return inteiro
 }

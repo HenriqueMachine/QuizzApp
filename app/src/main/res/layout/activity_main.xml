@@ -26,7 +26,7 @@
         android:background="@drawable/shape_button_menu"
         android:text="MODO ADIÇÃO ( + )"
         android:textSize="25dp"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@android:color/white"/>
     <Button
         android:id="@+id/btnMinus"
         android:layout_marginBottom="20dp"
@@ -37,7 +37,7 @@
         android:background="@drawable/shape_button_menu"
         android:text="MODO SUBTRAÇÃO ( - )"
         android:textSize="25dp"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@android:color/white"/>
     <Button
         android:id="@+id/btnX"
         android:layout_marginBottom="20dp"
@@ -48,7 +48,7 @@
         android:background="@drawable/shape_button_menu"
         android:text="MODO MULTIPLICAÇÃO ( x )"
         android:textSize="25dp"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@android:color/white"/>
 
     <Button
         android:id="@+id/btnDivide"
@@ -60,6 +60,6 @@
         android:background="@drawable/shape_button_menu"
         android:text="MODO DIVISÃO ( / )"
         android:textSize="25dp"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@android:color/white"/>
 
 </LinearLayout>
