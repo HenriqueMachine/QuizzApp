@@ -23,13 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottieFile"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="center"
-                android:layout_width="100dp"
-                android:layout_height="100dp"/>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,7 +109,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/colorBackground2"
+                android:background="@color/colorPrimaryDark"
                 android:layout_height="130dp"
                 android:layout_width="match_parent"
                 android:gravity="center"

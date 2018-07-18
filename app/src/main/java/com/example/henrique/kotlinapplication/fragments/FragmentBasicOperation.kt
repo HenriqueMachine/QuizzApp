@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.airbnb.lottie.LottieAnimationView
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.activity.MainActivity
@@ -101,10 +100,7 @@ class FragmentBasicOperation : Fragment() {
     //Inicia as views na tela
     private fun initViews() {
 
-        lottieFile.setAnimation(R.raw.graduating_engineer)
-        lottieFile.playAnimation()
-        lottieFile.loop(true)
-
+      //Começa na tela
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
@@ -234,9 +230,7 @@ class FragmentBasicOperation : Fragment() {
         if (myAnswer == answer ){
             questionsCorrect = questionsCorrect?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
-            lottieFile.setAnimation(R.raw.ok)
-            lottieFile.playAnimation()
-            lottieFile.cancelAnimation()
+           //Acertou
 
             when (op){
                 "/" -> startTimer(timerNow!! + 11000)
@@ -248,9 +242,7 @@ class FragmentBasicOperation : Fragment() {
         }
         if (myAnswer != answer ){
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
-            lottieFile.setAnimation(R.raw.failed)
-            lottieFile.playAnimation()
-            lottieFile.cancelAnimation()
+            //Errou
              when (op){
                  "/" -> {startTimer(timerNow!! - 5100)
                  if (timerNow!! > 5100){
