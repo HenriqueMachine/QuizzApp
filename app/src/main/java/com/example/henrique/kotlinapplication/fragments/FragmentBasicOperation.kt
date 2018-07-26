@@ -328,11 +328,16 @@ class FragmentBasicOperation : Fragment() {
 
         val position = randomNumberGenerator(0,4)
 
-        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
-        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
-        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
-        (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
-        (radioGroup.getChildAt(4) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
+        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator((answer!! - 20),
+                (answer!! + 20)).toString()
+        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator((answer!! - 20),
+                (answer!! + 20)).toString()
+        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator((answer!! - 20),
+                (answer!! + 20)).toString()
+        (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator((answer!! - 20),
+                (answer!! + 20)).toString()
+        (radioGroup.getChildAt(4) as RadioButton).text = randomNumberGenerator((answer!! - 20),
+                (answer!! + 20)).toString()
 
         (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()}
 
