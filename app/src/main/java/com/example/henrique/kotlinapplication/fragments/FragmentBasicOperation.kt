@@ -14,8 +14,8 @@ import android.widget.*
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.activity.MainActivity
-import com.example.henrique.kotlinapplication.activity.QuizzActivity
 import com.example.henrique.kotlinapplication.models.Resposta
+import com.example.henrique.kotlinapplication.utils.CustomDialog
 import kotlinx.android.synthetic.main.fragment_basic_operation.*
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.collections.ArrayList
@@ -45,10 +45,23 @@ class FragmentBasicOperation : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnSair.setOnClickListener {
+        buttonSair.setOnClickListener {
 
-            val intent = Intent (activity, MainActivity:: class.java)
-            startActivity(intent)
+            onPause()
+
+            CustomDialog(this.context).showDialog("Atenção", "Você deseja mesmo sair?", object:CustomDialog.CustomDialogActions{
+                override fun yes() {
+
+                    onDestroy()
+                    val intent = Intent (activity, MainActivity:: class.java)
+                    startActivity(intent)
+
+                }
+
+                override fun no() {
+
+                }
+            })
 
         }
 

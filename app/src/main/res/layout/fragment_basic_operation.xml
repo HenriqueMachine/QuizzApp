@@ -9,7 +9,7 @@
     android:padding="16dp">
 
     <Button
-        android:id="@+id/btnSair"
+        android:id="@+id/buttonSair"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/ic_sair"/>
