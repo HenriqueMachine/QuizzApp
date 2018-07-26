@@ -60,6 +60,9 @@ class FragmentBasicOperation : Fragment() {
 
                 override fun no() {
 
+                    onResume()
+                    generateQuestion()
+
                 }
             })
 
