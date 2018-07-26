@@ -110,7 +110,7 @@
 
             <LinearLayout
                 android:background="@color/colorPrimaryDark"
-                android:layout_height="130dp"
+                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -149,6 +149,26 @@
                         android:textSize="20dp"
                         android:textColor="#fff"
                         android:id="@+id/radioButtonC"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:textColor="#fff"
+                        android:id="@+id/radioButtonD"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:text=""
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:textColor="#fff"
+                        android:id="@+id/radioButtonE"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content">
                     </RadioButton>

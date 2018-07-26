@@ -65,6 +65,8 @@ class FragmentBasicOperation : Fragment() {
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
+        radioButtonD.isEnabled = false
+        radioButtonC.isEnabled = false
 
         dialog = Dialog(activity)
 
@@ -81,6 +83,8 @@ class FragmentBasicOperation : Fragment() {
             radioButtonA.isEnabled = true
             radioButtonB.isEnabled = true
             radioButtonC.isEnabled = true
+            radioButtonD.isEnabled = true
+            radioButtonE.isEnabled = true
 
         }
     }
@@ -104,6 +108,10 @@ class FragmentBasicOperation : Fragment() {
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
+        radioButtonD.isEnabled = false
+        radioButtonE.isEnabled = false
+
+
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             try {
@@ -126,6 +134,8 @@ class FragmentBasicOperation : Fragment() {
                 radioButtonA.isEnabled = true
                 radioButtonB.isEnabled = true
                 radioButtonC.isEnabled = true
+                radioButtonD.isEnabled = true
+                radioButtonE.isEnabled = true
                 when (op){
                     "/" -> {startTimer(61000)}
                     "*" -> {startTimer(61000)}
@@ -189,6 +199,8 @@ class FragmentBasicOperation : Fragment() {
             radioButtonA.isEnabled = true
             radioButtonB.isEnabled = true
             radioButtonC.isEnabled = true
+            radioButtonD.isEnabled = true
+            radioButtonE.isEnabled = true
             when (op){
                 "/" -> {startTimer(61000)}
                 "*" -> {startTimer(61000)}
@@ -314,11 +326,13 @@ class FragmentBasicOperation : Fragment() {
             "/" -> answer = value1!! / value2!!
         }
 
-        val position = randomNumberGenerator(0,2)
+        val position = randomNumberGenerator(0,4)
 
-        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator((answer!! - 22),(answer!! + 22)).toString()
-        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator((answer!! - 22),(answer!! + 22)).toString()
-        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator((answer!! - 22),(answer!! + 22)).toString()
+        (radioGroup.getChildAt(0) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
+        (radioGroup.getChildAt(1) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
+        (radioGroup.getChildAt(2) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
+        (radioGroup.getChildAt(3) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
+        (radioGroup.getChildAt(4) as RadioButton).text = randomNumberGenerator((answer!! - 20),(answer!! + 20)).toString()
 
         (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()}
 
