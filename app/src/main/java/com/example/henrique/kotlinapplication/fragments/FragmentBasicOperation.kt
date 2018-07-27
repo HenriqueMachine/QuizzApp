@@ -3,6 +3,8 @@ package com.example.henrique.kotlinapplication.fragments
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v4.app.Fragment
@@ -35,7 +37,8 @@ class FragmentBasicOperation : Fragment() {
     private var timerNow: Long? = null
     private var listAnswers = ArrayList <Resposta> ()
     private var questionsCorrect: Int? = 0
-    private var dialog:Dialog? = null
+
+    var dialog:CustomDialog? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,11 +48,12 @@ class FragmentBasicOperation : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dialog = CustomDialog(this.context)
         buttonSair.setOnClickListener {
 
             onPause()
 
-            CustomDialog(this.context).showDialog("Atenção", "Você deseja mesmo sair?", object:CustomDialog.CustomDialogActions{
+            dialog?.showDialog("Atenção", "Você deseja mesmo sair?", object:CustomDialog.CustomDialogActions{
                 override fun yes() {
 
                     onDestroy()
@@ -83,8 +87,6 @@ class FragmentBasicOperation : Fragment() {
         radioButtonC.isEnabled = false
         radioButtonD.isEnabled = false
         radioButtonC.isEnabled = false
-
-        dialog = Dialog(activity)
 
         initViews()
 
@@ -120,7 +122,7 @@ class FragmentBasicOperation : Fragment() {
     //Inicia as views na tela
     private fun initViews() {
 
-      //Começa na tela
+        //Começa na tela
         radioButtonA.isEnabled = false
         radioButtonB.isEnabled = false
         radioButtonC.isEnabled = false
@@ -205,50 +207,43 @@ class FragmentBasicOperation : Fragment() {
     //Mostra a dialog de resultado
     private fun showDialogResult() {
 
-        dialog?.setContentView(R.layout.custom_dialog)
-        dialog?.setCancelable(false)
-        dialog?.findViewById<Button>(R.id.btnPlayAgain)?.setOnClickListener {
+        dialog?.showDialogEndGame("Seu tempo acabou :(",questionsCorrect.toString(),object: CustomDialog.CustomDialogActionsEndGame{
+            override fun playAgain() {
 
-            questionsCorrect = 0
-            initViews()
-            generateQuestion()
-            radioButtonA.isEnabled = true
-            radioButtonB.isEnabled = true
-            radioButtonC.isEnabled = true
-            radioButtonD.isEnabled = true
-            radioButtonE.isEnabled = true
-            when (op){
-                "/" -> {startTimer(61000)}
-                "*" -> {startTimer(61000)}
-                else ->{startTimer(41000)}
+                questionsCorrect = 0
+                initViews()
+                generateQuestion()
+                radioButtonA.isEnabled = true
+                radioButtonB.isEnabled = true
+                radioButtonC.isEnabled = true
+                radioButtonD.isEnabled = true
+                radioButtonE.isEnabled = true
+                when (op){
+                    "/" -> {startTimer(61000)}
+                    "*" -> {startTimer(61000)}
+                    else ->{startTimer(41000)}
+
+                }
+
             }
-            dialog?.dismiss()
-        }
-        dialog?.findViewById<Button>(R.id.btnResult)?.setOnClickListener {
 
-            var resultadoFragment = ResultadoFragment()
+            override fun resultado() {
 
-            var args = Bundle()
-            args.putParcelableArrayList("RESPOSTAS",listAnswers)
+                var resultadoFragment = ResultadoFragment()
 
-            resultadoFragment.arguments = args
+                var args = Bundle()
+                args.putParcelableArrayList("RESPOSTAS",listAnswers)
 
-            activity?.supportFragmentManager
-                    ?.beginTransaction()
-                    ?.replace(R.id.container, resultadoFragment)
-                    ?.addToBackStack(null)
-                    ?.commit()
+                resultadoFragment.arguments = args
 
-            questionsCorrect = 0
+                activity?.supportFragmentManager
+                        ?.beginTransaction()
+                        ?.replace(R.id.container, resultadoFragment)
+                        ?.addToBackStack(null)
+                        ?.commit()
 
-            dialog?.dismiss()
-
-        }
-
-        dialog?.findViewById<TextView>(R.id.textview_acertos)?.text = questionsCorrect.toString()
-
-        if (!dialog!!.isShowing)
-            dialog?.show()
+            }
+        })
 
     }
 
@@ -258,7 +253,7 @@ class FragmentBasicOperation : Fragment() {
         if (myAnswer == answer ){
             questionsCorrect = questionsCorrect?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
-           //Acertou
+            //Acertou
 
             when (op){
                 "/" -> startTimer(timerNow!! + 11000)
@@ -271,42 +266,34 @@ class FragmentBasicOperation : Fragment() {
         if (myAnswer != answer ){
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
             //Errou
-             when (op){
-                 "/" -> {startTimer(timerNow!! - 5100)
-                 if (timerNow!! > 5100){
-                     generateQuestion()
-                 }else {timerToEnd.text = "0"
-                     finishGame()
-                     timer?.cancel()} }
+            when (op){
+                "/" -> {startTimer(timerNow!! - 5100)
+                    if (timerNow!! > 5100){
+                        generateQuestion()
+                    }else {timerToEnd.text = "0"
+                        finishGame()
+                        timer?.cancel()} }
 
-                 "*" -> {startTimer(timerNow!! - 5100)
-                     if (timerNow!! > 5100){
-                         generateQuestion()
-                     }else {timerToEnd.text = "0"
-                         finishGame()
-                         timer?.cancel()}}
+                "*" -> {startTimer(timerNow!! - 5100)
+                    if (timerNow!! > 5100){
+                        generateQuestion()
+                    }else {timerToEnd.text = "0"
+                        finishGame()
+                        timer?.cancel()}}
+                "+" -> {startTimer(timerNow!! - 5100)
+                    if (timerNow!! > 5100){
+                        generateQuestion()
+                    }else {timerToEnd.text = "0"
+                        finishGame()
+                        timer?.cancel()}}
 
-                 "/" -> {startTimer(timerNow!! - 5100)
-                     if (timerNow!! > 5100){
-                         generateQuestion()
-                     }else {timerToEnd.text = "0"
-                         finishGame()
-                         timer?.cancel()}}
-
-                 "+" -> {startTimer(timerNow!! - 5100)
-                     if (timerNow!! > 5100){
-                         generateQuestion()
-                     }else {timerToEnd.text = "0"
-                         finishGame()
-                         timer?.cancel()}}
-
-                 "-" -> {startTimer(timerNow!! + 5100)
-                     if (timerNow!! > 5100){
-                         generateQuestion()
-                     }else {timerToEnd.text = "0"
-                         finishGame()
-                         timer?.cancel()}}
-             }
+                "-" -> {startTimer(timerNow!! - 5100)
+                    if (timerNow!! > 5100){
+                        generateQuestion()
+                    }else {timerToEnd.text = "0"
+                        finishGame()
+                        timer?.cancel()}}
+            }
 
         }
 
@@ -357,10 +344,10 @@ class FragmentBasicOperation : Fragment() {
 
         (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()}
 
-}
+    }
 
     //Gera os números aleatórios
     private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
-    var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
-    return inteiro
-}
+        var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
+        return inteiro
+    }

@@ -1,75 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:minWidth="330dp"
+    android:minHeight="250dp">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/textview_tittle_dialog_endgame"
+        android:background="@drawable/shape_button_menu_green"
+        android:padding="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Seu tempo acabou :("
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        />
+
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:background="@android:color/white">
 
-        <TextView
-            android:id="@+id/textview_tittle_dialog_util"
-            android:background="@drawable/shape_button_menu_green"
-            android:padding="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:text="Seu tempo acabou :("
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            />
         <TextView
             android:id="@+id/textview_voce_acertou"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Você acertou:"
-            android:layout_below="@+id/textview_tittle_dialog_util"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            android:textColor="@color/colorPrimaryDark" />
         <TextView
             android:id="@+id/textview_acertos"
             android:padding="5dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@id/textview_voce_acertou"/>
+            android:textColor="@color/colorPrimaryDark"/>
         <TextView
             android:id="@+id/textview_questoes"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="questões."
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/textview_acertos"/>
+            android:textColor="@color/colorPrimaryDark"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:gravity="center"
-            android:layout_below="@id/textview_questoes">
+            android:gravity="center">
 
             <Button
-                android:id="@+id/btnPlayAgain"
+                android:id="@+id/buttonPlayAgain"
                 android:textColor="#fff"
                 android:textStyle="italic"
                 android:background="@drawable/shape_button_menu"
@@ -83,7 +77,7 @@
                 android:text="JOGAR\nNOVAMENTE" />
 
             <Button
-                android:id="@+id/btnResult"
+                android:id="@+id/buttonResult"
                 android:textStyle="bold"
                 android:textColor="#fff"
                 android:background="@drawable/shape_button_menu"
@@ -98,6 +92,6 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
