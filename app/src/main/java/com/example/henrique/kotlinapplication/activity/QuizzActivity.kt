@@ -1,11 +1,15 @@
 package com.example.henrique.kotlinapplication.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.fragments.FragmentBasicOperation
+import com.example.henrique.kotlinapplication.utils.CustomDialog
 
 class QuizzActivity : AppCompatActivity() {
+
+    var mFragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,27 @@ class QuizzActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onBackPressed() {
+
+        CustomDialog(this).showDialog("Atenção", "Você deseja mesmo sair?", object: CustomDialog.CustomDialogActions{
+            override fun yes() {
+
+                onDestroy()
+                val intent = Intent (this@QuizzActivity, MainActivity:: class.java)
+                startActivity(intent)
+
+            }
+
+            override fun no() {
+
+                onResume()
+
+            }
+        })
+
+    }
+
 
 }
 

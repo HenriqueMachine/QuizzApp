@@ -16,6 +16,7 @@ import android.widget.*
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.activity.MainActivity
+import com.example.henrique.kotlinapplication.activity.ResultadoActivity
 import com.example.henrique.kotlinapplication.models.Resposta
 import com.example.henrique.kotlinapplication.utils.CustomDialog
 import kotlinx.android.synthetic.main.fragment_basic_operation.*
@@ -129,8 +130,6 @@ class FragmentBasicOperation : Fragment() {
         radioButtonD.isEnabled = false
         radioButtonE.isEnabled = false
 
-
-
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             try {
 
@@ -222,25 +221,32 @@ class FragmentBasicOperation : Fragment() {
                     "/" -> {startTimer(61000)}
                     "*" -> {startTimer(61000)}
                     else ->{startTimer(41000)}
-
                 }
 
             }
 
             override fun resultado() {
 
-                var resultadoFragment = ResultadoFragment()
+                questionsCorrect = 0
+                initViews()
+                generateQuestion()
+                radioButtonA.isEnabled = true
+                radioButtonB.isEnabled = true
+                radioButtonC.isEnabled = true
+                radioButtonD.isEnabled = true
+                radioButtonE.isEnabled = true
+                when (op){
+                    "/" -> {startTimer(61000)}
+                    "*" -> {startTimer(61000)}
+                    else ->{startTimer(41000)}
+                }
 
-                var args = Bundle()
-                args.putParcelableArrayList("RESPOSTAS",listAnswers)
+                var intent = Intent(context, ResultadoActivity::class.java)
+                intent.putExtra("RESPOSTAS",listAnswers)
+                intent.putExtra("OP",op)
+                startActivity(intent)
 
-                resultadoFragment.arguments = args
 
-                activity?.supportFragmentManager
-                        ?.beginTransaction()
-                        ?.replace(R.id.container, resultadoFragment)
-                        ?.addToBackStack(null)
-                        ?.commit()
 
             }
         })
@@ -303,7 +309,7 @@ class FragmentBasicOperation : Fragment() {
     }
 
     //Gera questão
-    private fun generateQuestion() {
+    fun generateQuestion() {
 
         when (op){
             "*" -> {  value1 = randomNumberGenerator((4),94)
@@ -344,10 +350,10 @@ class FragmentBasicOperation : Fragment() {
 
         (radioGroup.getChildAt(position) as RadioButton).text = answer.toString()}
 
-    }
+}
 
-    //Gera os números aleatórios
-    private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
-        var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
-        return inteiro
-    }
+//Gera os números aleatórios
+private fun randomNumberGenerator(min:Int,numParaGerar:Int): Int{
+    var inteiro:Int = ThreadLocalRandom.current().nextInt(min, numParaGerar)
+    return inteiro
+}

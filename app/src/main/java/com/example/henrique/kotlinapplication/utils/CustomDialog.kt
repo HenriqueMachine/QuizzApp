@@ -73,6 +73,37 @@ open class CustomDialog (val context:Context?){
 
     }
 
+    fun showDialogResposta(tittle:String, body:String,listern:CustomDialogActions){
+
+        if (dialog == null){
+
+            dialog = Dialog(context)
+
+        }
+
+        dialog?.setContentView(R.layout.custom_dialog_resposta)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.setCancelable(false)
+        dialog?.findViewById<TextView>(R.id.textview_tittle_dialog_resposta)?.text = tittle
+        dialog?.findViewById<TextView>(R.id.textview_corpo_mensagem_resposta)?.text = body
+        dialog?.findViewById<Button>(R.id.button_sim_resposta)?.setOnClickListener {
+
+            listern.yes()
+            dialog?.dismiss()
+
+        }
+        dialog?.findViewById<Button>(R.id.button_nao_resposta)?.setOnClickListener {
+
+            listern.no()
+            dialog?.dismiss()
+
+        }
+
+        if (dialog?.isShowing == false)
+            dialog?.show()
+
+    }
+
     interface CustomDialogActions{
         fun yes()
         fun no()
