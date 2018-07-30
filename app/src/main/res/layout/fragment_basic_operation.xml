@@ -80,7 +80,7 @@
                     android:id="@+id/number1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
+                    android:background="@drawable/shape_button_menu"
                     android:padding="16dp"
                     android:text="0"
                     android:textColor="#fff"
@@ -102,7 +102,7 @@
                     android:id="@+id/number2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccent"
+                    android:background="@drawable/shape_button_menu"
                     android:padding="16dp"
                     android:text="0"
                     android:textColor="#fff"
@@ -111,69 +111,65 @@
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/colorPrimaryDark"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_green_border"
+                android:layout_margin="8dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
                 <RadioGroup
-                    android:orientation="vertical"
                     android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <RadioButton
                         android:id="@+id/radioButtonA"
-                        android:text=""
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </RadioButton>
+                        android:text=""
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold"></RadioButton>
 
 
                     <RadioButton
-                        android:text=""
                         android:id="@+id/radioButtonB"
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </RadioButton>
+                        android:text=""
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold"></RadioButton>
 
                     <RadioButton
-                        android:text=""
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        android:textColor="#fff"
                         android:id="@+id/radioButtonC"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </RadioButton>
+                        android:text=""
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold"></RadioButton>
 
                     <RadioButton
-                        android:text=""
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        android:textColor="#fff"
                         android:id="@+id/radioButtonD"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </RadioButton>
+                        android:text=""
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold"></RadioButton>
 
                     <RadioButton
-                        android:text=""
-                        android:textStyle="bold"
-                        android:textSize="20dp"
-                        android:textColor="#fff"
                         android:id="@+id/radioButtonE"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </RadioButton>
+                        android:text=""
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold"></RadioButton>
 
                 </RadioGroup>
 

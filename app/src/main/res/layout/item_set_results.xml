@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text= "+"
+            android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#fff"/>
         <TextView
@@ -58,6 +59,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="3"
+            android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#fff"/>
 

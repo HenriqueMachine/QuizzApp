@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val buttonStart = findViewById(R.id.btnStart) as Button
+        val buttonStart = findViewById<Button>(R.id.btnStart)
 
         buttonStart.setOnClickListener {
             val intent = Intent (this, QuizzActivity:: class.java)

@@ -23,7 +23,6 @@ class ResultadoFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_resultado, container, false)
 
-
         return view
     }
 
@@ -49,6 +48,5 @@ class ResultadoFragment : Fragment() {
             adapter?.replaceData(listRespostas!!)
         }
     }
-
 
 }

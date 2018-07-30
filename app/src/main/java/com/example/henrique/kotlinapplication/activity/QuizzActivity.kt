@@ -7,8 +7,6 @@ import com.example.henrique.kotlinapplication.fragments.FragmentBasicOperation
 
 class QuizzActivity : AppCompatActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quizz)
@@ -25,6 +23,7 @@ class QuizzActivity : AppCompatActivity() {
                 .beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit()
+
 
     }
 
