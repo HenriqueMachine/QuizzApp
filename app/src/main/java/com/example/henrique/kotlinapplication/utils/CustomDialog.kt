@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.henrique.kotlinapplication.R
 
@@ -86,6 +87,11 @@ open class CustomDialog (val context:Context?){
         dialog?.setCancelable(false)
         dialog?.findViewById<TextView>(R.id.textview_tittle_dialog_resposta)?.text = tittle
         dialog?.findViewById<TextView>(R.id.textview_corpo_mensagem_resposta)?.text = body
+        dialog?.findViewById<ImageView>(R.id.imageview_close_dialog)?.setOnClickListener{
+
+            dialog?.dismiss()
+
+        }
         dialog?.findViewById<Button>(R.id.button_sim_resposta)?.setOnClickListener {
 
             listern.yes()

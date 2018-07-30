@@ -3,74 +3,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:minWidth="330dp"
     android:minHeight="250dp">
 
-    <TextView
-        android:id="@+id/textview_tittle_dialog_resposta"
-        android:background="@drawable/shape_button_menu_green"
-        android:padding="6dp"
+    <ImageView
+        android:id="@+id/imageview_close_dialog"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/ic_close_white"
+        android:layout_gravity="right"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="wrap_content"
-        android:text="Atenção"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:textSize="24sp"/>
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:background="@android:color/white">
         <TextView
-            android:id="@+id/textview_corpo_mensagem_resposta"
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Mensagem aqui"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_centerHorizontal="true"/>
-
-        <LinearLayout
+            android:id="@+id/textview_tittle_dialog_resposta"
+            android:background="@drawable/shape_button_menu_green"
+            android:padding="6dp"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="Atenção"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
+
+        <RelativeLayout
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_below="@+id/textview_corpo_mensagem_resposta">
-
-            <Button
-                android:id="@+id/button_sim_resposta"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:background="@drawable/shape_button_menu"
-                android:layout_marginBottom="16dp"
-                android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/white">
+            <TextView
+                android:id="@+id/textview_corpo_mensagem_resposta"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:text="Jogar novamente" />
-
-            <Button
-                android:id="@+id/button_nao_resposta"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Mensagem aqui"
                 android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:background="@drawable/shape_button_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_marginBottom="16dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_centerHorizontal="true"/>
 
-                android:text="Menu" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_below="@+id/textview_corpo_mensagem_resposta">
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/button_sim_resposta"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/shape_button_menu"
+                    android:layout_marginBottom="16dp"
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Jogar novamente" />
 
-    </RelativeLayout>
+                <Button
+                    android:id="@+id/button_nao_resposta"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/shape_button_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="16dp"
+
+                    android:text="Menu" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

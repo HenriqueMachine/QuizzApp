@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.adapters.RecyclerAdapterResposta
 import com.example.henrique.kotlinapplication.models.Resposta
@@ -22,6 +23,7 @@ class ResultadoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado)
+        //setSupportActionBar(toolbar as Toolbar?)
 
         listRespostas = intent.extras?.getParcelableArrayList<Resposta>("RESPOSTAS")
 
