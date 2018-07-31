@@ -16,6 +16,7 @@ import android.widget.*
 
 import com.example.henrique.kotlinapplication.R
 import com.example.henrique.kotlinapplication.activity.MainActivity
+import com.example.henrique.kotlinapplication.activity.RelatorioActivity
 import com.example.henrique.kotlinapplication.activity.ResultadoActivity
 import com.example.henrique.kotlinapplication.models.Resposta
 import com.example.henrique.kotlinapplication.utils.CustomDialog
@@ -38,6 +39,8 @@ class FragmentBasicOperation : Fragment() {
     private var timerNow: Long? = null
     private var listAnswers = ArrayList <Resposta> ()
     private var questionsCorrect: Int? = 0
+    private var questionsTotal: Int? = 0
+    private var questionsWrong: Int? = 0
 
     var dialog:CustomDialog? = null
 
@@ -207,6 +210,7 @@ class FragmentBasicOperation : Fragment() {
     private fun showDialogResult() {
 
         dialog?.showDialogEndGame("Seu tempo acabou :(",questionsCorrect.toString(),object: CustomDialog.CustomDialogActionsEndGame{
+
             override fun playAgain() {
 
                 questionsCorrect = 0
@@ -228,6 +232,8 @@ class FragmentBasicOperation : Fragment() {
             override fun resultado() {
 
                 questionsCorrect = 0
+                questionsTotal = 0
+                questionsWrong = 0
                 initViews()
                 generateQuestion()
                 radioButtonA.isEnabled = true
@@ -249,6 +255,17 @@ class FragmentBasicOperation : Fragment() {
 
 
             }
+
+            override fun relatorio() {
+
+                var intent = Intent(context, RelatorioActivity::class.java)
+                intent.putExtra("TOTAL",questionsTotal)
+                intent.putExtra("WRONG",questionsWrong)
+                intent.putExtra("CORRECT",questionsCorrect)
+                startActivity(intent)
+
+            }
+
         })
 
     }
@@ -258,6 +275,7 @@ class FragmentBasicOperation : Fragment() {
 
         if (myAnswer == answer ){
             questionsCorrect = questionsCorrect?.plus(1)
+            questionsTotal = questionsTotal?.plus(1)
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,true))
             //Acertou
 
@@ -271,6 +289,7 @@ class FragmentBasicOperation : Fragment() {
         }
         if (myAnswer != answer ){
             listAnswers.add(Resposta(value1!!,value2!!, answer!!,op,false))
+            questionsWrong = questionsWrong?.plus(1)
             //Errou
             when (op){
                 "/" -> {startTimer(timerNow!! - 5100)

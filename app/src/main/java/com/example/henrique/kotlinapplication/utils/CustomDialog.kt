@@ -68,6 +68,11 @@ open class CustomDialog (val context:Context?){
             dialogEnd?.dismiss()
 
         }
+        dialogEnd?.findViewById<Button>(R.id.buttonRelatorio)?.setOnClickListener {
+            listern.relatorio()
+            dialogEnd?.dismiss()
+
+        }
 
         if (dialogEnd?.isShowing == false)
             dialogEnd?.show()
@@ -118,6 +123,7 @@ open class CustomDialog (val context:Context?){
     interface CustomDialogActionsEndGame{
         fun playAgain()
         fun resultado()
+        fun relatorio()
     }
 
 }

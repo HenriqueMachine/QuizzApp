@@ -25,7 +25,8 @@
         <activity android:name=".activity.QuizzNewModuleActivity" />
         <activity android:name=".activity.RespostasActivity" />
         <activity android:name=".activity.ResultadosActivity" />
-        <activity android:name=".activity.ResultadoActivity"></activity>
+        <activity android:name=".activity.ResultadoActivity" />
+        <activity android:name=".activity.RelatorioActivity"></activity>
     </application>
 
 </manifest>
