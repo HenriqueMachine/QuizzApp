@@ -95,7 +95,6 @@ class FragmentBasicOperation : Fragment() {
         initViews()
 
     }
-
     override fun onResume() {
         super.onResume()
         listAnswers.clear()
@@ -107,8 +106,8 @@ class FragmentBasicOperation : Fragment() {
             radioButtonC.isEnabled = true
             radioButtonD.isEnabled = true
             radioButtonE.isEnabled = true
-
         }
+
     }
 
     override fun onDestroy() {
@@ -231,28 +230,27 @@ class FragmentBasicOperation : Fragment() {
 
             override fun resultado() {
 
-                questionsCorrect = 0
-                questionsTotal = 0
-                questionsWrong = 0
-                initViews()
-                generateQuestion()
-                radioButtonA.isEnabled = true
-                radioButtonB.isEnabled = true
-                radioButtonC.isEnabled = true
-                radioButtonD.isEnabled = true
-                radioButtonE.isEnabled = true
-                when (op){
-                    "/" -> {startTimer(61000)}
-                    "*" -> {startTimer(61000)}
-                    else ->{startTimer(41000)}
-                }
+//                questionsCorrect = 0
+//                questionsTotal = 0
+//                questionsWrong = 0
+//                initViews()
+//                generateQuestion()
+//                radioButtonA.isEnabled = true
+//                radioButtonB.isEnabled = true
+//                radioButtonC.isEnabled = true
+//                radioButtonD.isEnabled = true
+//                radioButtonE.isEnabled = true
+//                when (op){
+//                    "/" -> {startTimer(61000)}
+//                    "*" -> {startTimer(61000)}
+//                    else ->{startTimer(41000)}
+//                }
+
 
                 var intent = Intent(context, ResultadoActivity::class.java)
                 intent.putExtra("RESPOSTAS",listAnswers)
                 intent.putExtra("OP",op)
                 startActivity(intent)
-
-
 
             }
 
@@ -293,29 +291,35 @@ class FragmentBasicOperation : Fragment() {
             //Errou
             when (op){
                 "/" -> {startTimer(timerNow!! - 5100)
-                    if (timerNow!! > 5100){
+                    if (timerNow!! >= 5100){
                         generateQuestion()
-                    }else {timerToEnd.text = "0"
+                    }else {
+                        timerToEnd.text = "0"
                         finishGame()
                         timer?.cancel()} }
 
                 "*" -> {startTimer(timerNow!! - 5100)
-                    if (timerNow!! > 5100){
+                    if (timerNow!! >= 5100){
                         generateQuestion()
-                    }else {timerToEnd.text = "0"
+                    }else {
+                        timerToEnd.text = "0"
                         finishGame()
                         timer?.cancel()}}
                 "+" -> {startTimer(timerNow!! - 5100)
-                    if (timerNow!! > 5100){
+                    if (timerNow!! >= 5100){
                         generateQuestion()
-                    }else {timerToEnd.text = "0"
+                    }else {
+                        timerToEnd.text = "0"
                         finishGame()
-                        timer?.cancel()}}
+                        timer?.cancel()
+                        onDestroy()
+                        onPause() }}
 
                 "-" -> {startTimer(timerNow!! - 5100)
-                    if (timerNow!! > 5100){
+                    if (timerNow!! >= 5100){
                         generateQuestion()
-                    }else {timerToEnd.text = "0"
+                    }else {
+                        timerToEnd.text = "0"
                         finishGame()
                         timer?.cancel()}}
             }

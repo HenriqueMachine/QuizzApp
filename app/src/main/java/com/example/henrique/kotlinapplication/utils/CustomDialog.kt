@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -88,6 +89,7 @@ open class CustomDialog (val context:Context?){
         }
 
         dialog?.setContentView(R.layout.custom_dialog_resposta)
+        dialog?.findViewById<Button>(R.id.button_questoes_resposta)?.visibility = View.GONE
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.setCancelable(false)
         dialog?.findViewById<TextView>(R.id.textview_tittle_dialog_resposta)?.text = tittle
@@ -106,6 +108,49 @@ open class CustomDialog (val context:Context?){
         dialog?.findViewById<Button>(R.id.button_nao_resposta)?.setOnClickListener {
 
             listern.no()
+            dialog?.dismiss()
+
+        }
+
+        if (dialog?.isShowing == false)
+            dialog?.show()
+
+    }
+
+    fun showDialogRelatorio(tittle:String, body:String,listern:CustomDialogActionsEndGame){
+
+        if (dialog == null){
+
+            dialog = Dialog(context)
+
+        }
+
+        dialog?.setContentView(R.layout.custom_dialog_resposta)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.setCancelable(false)
+        dialog?.findViewById<TextView>(R.id.textview_tittle_dialog_resposta)?.text = tittle
+        dialog?.findViewById<TextView>(R.id.textview_corpo_mensagem_resposta)?.text = body
+        dialog?.findViewById<Button>(R.id.button_questoes_resposta)?.visibility = View.VISIBLE
+        dialog?.findViewById<Button>(R.id.button_questoes_resposta)?.setOnClickListener {
+
+            listern.playAgain()
+            dialog?.dismiss()
+
+        }
+        dialog?.findViewById<ImageView>(R.id.imageview_close_dialog)?.setOnClickListener{
+
+            dialog?.dismiss()
+
+        }
+        dialog?.findViewById<Button>(R.id.button_sim_resposta)?.setOnClickListener {
+
+            listern.relatorio()
+            dialog?.dismiss()
+
+        }
+        dialog?.findViewById<Button>(R.id.button_nao_resposta)?.setOnClickListener {
+
+            listern.resultado()
             dialog?.dismiss()
 
         }

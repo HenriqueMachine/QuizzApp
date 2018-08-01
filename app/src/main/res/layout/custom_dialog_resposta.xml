@@ -73,6 +73,18 @@
                     android:text="Jogar novamente" />
 
                 <Button
+                    android:id="@+id/button_questoes_resposta"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/shape_button_menu"
+                    android:layout_marginBottom="16dp"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="Questões" />
+
+                <Button
                     android:id="@+id/button_nao_resposta"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
