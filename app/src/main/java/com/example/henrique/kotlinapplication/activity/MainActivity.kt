@@ -38,4 +38,14 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        var intent = Intent(this@MainActivity, StartActivity::class.java )
+        startActivity(intent)
+        finish()
+
+    }
+
 }

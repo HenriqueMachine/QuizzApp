@@ -72,6 +72,7 @@ class ResultadoActivity : AppCompatActivity() {
                             var intent = Intent(this@ResultadoActivity, QuizzActivity::class.java )
                             intent.putExtra("OP",op)
                             startActivity(intent)
+                            finish()
 //                           onBackPressed()
                         }
 
@@ -79,6 +80,7 @@ class ResultadoActivity : AppCompatActivity() {
 
                             var intent = Intent(this@ResultadoActivity, MainActivity::class.java )
                             startActivity(intent)
+                            finish()
 
                         }
                     })

@@ -41,6 +41,7 @@ class FragmentBasicOperation : Fragment() {
     private var questionsCorrect: Int? = 0
     private var questionsTotal: Int? = 0
     private var questionsWrong: Int? = 0
+    private var finishGame:Boolean = false
 
     var dialog:CustomDialog? = null
 
@@ -97,15 +98,26 @@ class FragmentBasicOperation : Fragment() {
     }
     override fun onResume() {
         super.onResume()
-        listAnswers.clear()
-        if (init){
-            radioGroup.clearCheck()
-            startTimer(timerNow!!)
-            radioButtonA.isEnabled = true
-            radioButtonB.isEnabled = true
-            radioButtonC.isEnabled = true
-            radioButtonD.isEnabled = true
-            radioButtonE.isEnabled = true
+
+        if (finishGame){
+
+            finishGame()
+
+        }else{
+
+            listAnswers.clear()
+            if (init){
+                generateQuestion()
+                radioGroup.clearCheck()
+                startTimer(timerNow!!)
+                radioButtonA.isEnabled = true
+                radioButtonB.isEnabled = true
+                radioButtonC.isEnabled = true
+                radioButtonD.isEnabled = true
+                radioButtonE.isEnabled = true
+            }
+
+
         }
 
     }
@@ -208,6 +220,8 @@ class FragmentBasicOperation : Fragment() {
     //Mostra a dialog de resultado
     private fun showDialogResult() {
 
+        finishGame = true
+
         dialog?.showDialogEndGame("Seu tempo acabou :(",questionsCorrect.toString(),object: CustomDialog.CustomDialogActionsEndGame{
 
             override fun playAgain() {
@@ -246,7 +260,6 @@ class FragmentBasicOperation : Fragment() {
 //                    else ->{startTimer(41000)}
 //                }
 
-
                 var intent = Intent(context, ResultadoActivity::class.java)
                 intent.putExtra("RESPOSTAS",listAnswers)
                 intent.putExtra("OP",op)
@@ -261,6 +274,7 @@ class FragmentBasicOperation : Fragment() {
                 intent.putExtra("WRONG",questionsWrong)
                 intent.putExtra("CORRECT",questionsCorrect)
                 startActivity(intent)
+
 
             }
 
